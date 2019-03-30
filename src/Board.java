@@ -77,15 +77,16 @@ public class Board extends JPanel {
 
         queen = queen.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 
-        q=new Queen(70,70);
+        q=new Queen(xqueen,yqueen - 352/2);
 
 
 
 
         ActionListener al = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
-                //repaint();
-                paintImmediately(q.x-2,q.y-2,q.image.getWidth(null),q.image.getHeight(null));
+                repaint();
+                //paintImmediately(q.x-2,q.y-2,q.image.getWidth(null),q.image.getHeight(null));
+                //paintImmediately(q);
             }
         };
         Timer timer = new Timer(50,al);
@@ -93,14 +94,18 @@ public class Board extends JPanel {
 
     }
 
-    /*
-    public Board getBoard()
-    {
-
+    public void paintImmediately(Queen queen) {
+        //Paints the new position of the Queen
+        int offset = q.offset;
+        super.paintImmediately(queen.x - 2, queen.y - 2, queen.image.getWidth(null), queen.image.getHeight(null));
     }
-    */
 
-    public void updateBoard(Piece p)
+    public void paintImmediately(Bishop bishop) {
+        //Paints the new position of the Bishop
+        super.paintImmediately(bishop.x - 2, bishop.y - 2, bishop.image.getWidth(null), bishop.image.getHeight(null));
+    }
+
+    public void updateBoard(Piece p)    //DOES NOT WORK
     {
         ActionListener al = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {

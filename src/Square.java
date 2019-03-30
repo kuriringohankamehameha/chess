@@ -19,7 +19,7 @@ public class Square extends Board{
 
     }
 
-    public Piece createPiece(String str)
+    public Piece createPiece(String str, int x, int y)
     {
         //Sets piece p to the square based on its type
 
@@ -29,6 +29,8 @@ public class Square extends Board{
         this.hasPiece = true;
         assert this.hasPiece;
         this.piece = p;
+        this.row_index = y;
+        this.col_index = x;
 
         return p;
     }

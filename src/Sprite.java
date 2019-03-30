@@ -9,6 +9,7 @@ public class Sprite {
     protected int height;
     protected boolean visible;
     protected Image image;
+    public String type;
 
     public Sprite()
     {

@@ -5,3 +5,7 @@ TODO:
 4. Move methods on each piece 
 5. Deletepiece() 
 6. Choices for Movement of pieces
+
+UPDATE:
+Add movement restricted to recentering around a square.
+Movement should be confined only to squares

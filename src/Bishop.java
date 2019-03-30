@@ -5,6 +5,7 @@ public class Bishop extends Sprite {
 
     public Bishop(int x, int y) {
         super(x, y);
+        super.type = "BISHOP";
 
         initMissile();
     }
