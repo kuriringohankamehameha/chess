@@ -1,0 +1,7 @@
+TODO:
+1. Implement MouseListener for all Pieces such that they move only when they are clicked.
+2. Make sure the repaint()/paintimmediately() method(s) don't crash the program. We must paint only if needed
+3. Set COLORS for each of the pieces such that they're demarcated based on that
+4. Move methods on each piece 
+5. Deletepiece() 
+6. Choices for Movement of pieces
