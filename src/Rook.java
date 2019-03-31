@@ -64,8 +64,6 @@ public class Rook extends Sprite implements MouseListener {
             if((this.y <= yc+22 && this.y >=yc-22 )&& !(this.x <= xc+22 & this.x >= xc-22)) {
                 moveHorizontally(this.x, xc);
                 resolveConflicts(this.x,this.y);
-                System.out.println("RESOLVING CONFLICT HORIZ\n");
-
                 choice = 0;
                 return ;
             }
@@ -73,7 +71,6 @@ public class Rook extends Sprite implements MouseListener {
             if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
                 moveVertically(this.y, yc);
                 resolveConflicts(this.x,this.y);
-                System.out.println("RESOLVING CONFLICT VERRT\n");
                 choice = 0;
                 return ;
             }

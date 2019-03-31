@@ -131,7 +131,7 @@ public class Board extends JPanel {
                 //paintImmediately(q);
             }
         };
-        Timer timer = new Timer(50,al);
+        Timer timer = new Timer(80,al);
         timer.start();
 
     }

@@ -86,6 +86,7 @@ public class Bishop extends Sprite implements MouseListener {
             if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
             {
                 moveDiagonally(this.x, this.y, xc, yc);
+                resolveConflicts(this.x,this.y);
                 decision = 2;
                 choice=0;
                 return ;

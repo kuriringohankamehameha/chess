@@ -2,6 +2,8 @@ import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.function.BooleanSupplier;
 import javax.swing.ImageIcon;
 
 import static java.lang.Math.abs;
@@ -91,6 +93,13 @@ public class Sprite implements MouseListener {
         this.visible = visible;
     }
 
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof Sprite)) return false;
+        Sprite o = (Sprite) obj;
+        return o.visible == this.visible;
+    }
 
     public void resolveConflicts(int xc, int yc)
     {
@@ -106,18 +115,18 @@ public class Sprite implements MouseListener {
         int i=0;
         for(Sprite sprite:this.list)
         {
+            System.out.println(this.getClass()+"\n");
             //if(this!=sprite && abs(this.list.get(i).x - xc)<=22 && abs(this.list.get(i).y - yc)<=22)
-                if(this!=sprite && abs(this.list.get(i).x - xc)==0 && abs(this.list.get(i).y - yc)==0)
-
-                {
-
+            if(this!=sprite && abs(this.list.get(i).x - xc)==0 && abs(this.list.get(i).y - yc)==0)
+            {
                 this.list.get(i).visible = false;
+                //this.list.remove(sprite); //Not sure. Please check
                 return;
-
             }
             i++;
         }
 
+        //this.list.removeIf(obj -> obj.visible == false);
     }
 
 

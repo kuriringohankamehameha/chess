@@ -92,6 +92,7 @@ public class Queen extends Sprite implements MouseListener {
         if(choice==1)
         {
             super.mouseClicked(e);
+            super.resolveConflicts(this.x,this.y);
             choice=0;
             return;
         }
