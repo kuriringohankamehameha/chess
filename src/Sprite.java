@@ -1,6 +1,7 @@
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import static java.lang.Math.abs;
@@ -19,6 +20,9 @@ public class Sprite implements MouseListener {
     public Queen queen;
     public Bishop bishop;
     public King king;
+
+    //List
+    public ArrayList<Sprite> list;
 
 
     public Sprite()
@@ -86,6 +90,34 @@ public class Sprite implements MouseListener {
     public void setVisible(Boolean visible) {
         this.visible = visible;
     }
+
+
+    public void resolveConflicts(int xc, int yc)
+    {
+        /*
+        for(int i=0;i<this.list.size();i++)
+        {
+            if(abs(this.list.get(i).x - xc)<=22 && abs(this.list.get(i).y - yc)<=22)
+            {
+                this.list.get(i).visible = false;
+            }
+        }
+        */
+        for(Sprite sprite:this.list)
+        {
+            int i=0;
+            if(this!=sprite && abs(this.list.get(i).x - xc)<=22 && abs(this.list.get(i).y - yc)<=22)
+            {
+                this.list.get(i).visible = false;
+                System.out.println("There was a conflict resolved\n");
+                //return;
+
+            }
+            i++;
+        }
+
+    }
+
 
 
     public void moveHorizontally(int from, int to)
@@ -320,7 +352,6 @@ public class Sprite implements MouseListener {
     {
 
     }
-
 
 }
 

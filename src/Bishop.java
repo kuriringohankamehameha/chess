@@ -1,10 +1,11 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
-public class Bishop extends Sprite implements MouseListener,Runnable {
+public class Bishop extends Sprite implements MouseListener {
 
     private final int BOARD_WIDTH = 390;
     private final int MISSILE_SPEED = 2;
@@ -16,6 +17,17 @@ public class Bishop extends Sprite implements MouseListener,Runnable {
         super.visible = true;
 
         initBishop();
+    }
+
+    public Bishop(int x, int y, ArrayList<Sprite> al)
+    {
+        super(x,y);
+        super.label = "BISHOP";
+        super.visible = true;
+        super.list=al;
+
+        initBishop();
+
     }
 
     private void initBishop() {
@@ -113,11 +125,5 @@ public class Bishop extends Sprite implements MouseListener,Runnable {
         super.moveVertically(from_y,toy);
     }
 
-    public void run()
-    {
-        //In the first click, let it remain there (move should be chosen)
-
-
-    }
 
 }

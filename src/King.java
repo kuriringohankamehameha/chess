@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
@@ -20,6 +21,17 @@ public class King extends Sprite implements MouseListener{
         super(x,y);
         super.label = "KING";
         super.visible = true;
+
+        initKing();
+
+    }
+
+    public King(int x, int y, ArrayList<Sprite> al)
+    {
+        super(x,y);
+        super.label = "KING";
+        super.visible = true;
+        super.list=al;
 
         initKing();
 

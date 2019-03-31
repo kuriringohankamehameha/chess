@@ -56,7 +56,7 @@ public class Board extends JPanel {
     public King k;
     public Rook r;
 
-    public ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
+    public final ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
 
 
     public Board() throws Exception
@@ -103,21 +103,21 @@ public class Board extends JPanel {
         //queen = queen.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 
 
-        q=new Queen(xqueen,yqueen - 352/2);
+        q=new Queen(xqueen,yqueen - 352/2,spriteArrayList);
         spriteArrayList.add(q);
 
 
         //System.out.println(spriteArrayList + ", " + spriteArrayList.get(0).x);
 
-        bishop_object = new Bishop(xbishop, ybishop - 352/2);
+        bishop_object = new Bishop(xbishop, ybishop - 352/2,spriteArrayList);
         spriteArrayList.add(bishop_object);
 
         //Add the King object to the SpriteList/spriteArrayList.add(new Sprite(k));
-        k = new King(xking, yking);
+        k = new King(xking, yking,spriteArrayList);
         spriteArrayList.add(k);
 
         //Add rook
-        r = new Rook(xrook, yrook);
+        r = new Rook(xrook, yrook,spriteArrayList);
         spriteArrayList.add(r);
 
 
@@ -328,6 +328,7 @@ public class Board extends JPanel {
 
         for(int i=0; i<spriteArrayList.size(); i++)
         {
+            if(spriteArrayList.get(i).visible)
             g.drawImage(spriteArrayList.get(i).image, spriteArrayList.get(i).x,spriteArrayList.get(i).y, this);
         }
 

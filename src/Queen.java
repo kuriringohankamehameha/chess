@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
@@ -16,6 +17,18 @@ public class Queen extends Sprite implements MouseListener {
         super(x,y);
         super.label = "QUEEN";
         super.visible = true;
+
+
+        initQueen();
+    }
+
+    public Queen(int x, int y, ArrayList<Sprite> al)
+    {
+        super(x,y);
+        super.label = "QUEEN";
+        super.visible = true;
+        super.list = al;
+
 
         initQueen();
     }
