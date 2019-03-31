@@ -73,7 +73,7 @@ public class Queen extends Sprite implements MouseListener {
         yc+=yoffset;
         int move[] = new int[2];
 
-        int choice = 0;
+        //int choice = 0;
         int decision = 0;
 
         //this.choice = !(this.choice);
@@ -86,6 +86,7 @@ public class Queen extends Sprite implements MouseListener {
         */
 
         //PROBLEM WITH BELOW PORTION
+        /*
         if (xc <= this.x+5 && xc >=this.x-5 && yc <= this.y+5 && yc >= this.y-5) {
             //moveHorizontally(0, 352 / 8);
             if (!this.choice) {
@@ -97,14 +98,15 @@ public class Queen extends Sprite implements MouseListener {
 
             }
         }
-
+        */
+        int choice = 1; //CHANGE THIS
         //Movement works, but I must restrict it to center of squares only
             if(choice == 1)
             {
                 //Choice is made and you can move
                 if((this.y <= yc+5 && this.y >=yc-5 )&& !(this.x <= xc+5 & this.x >= xc-5)) {
                     moveHorizontally(this.x, xc);
-                    System.out.println("Moving Horizontally\n");
+                    System.out.println("Moved Horizontally\n");
                     decision = 0;
 
                     return ;
@@ -113,7 +115,7 @@ public class Queen extends Sprite implements MouseListener {
                 if((this.x <= xc+5 && this.x >=xc-5 )&& !(this.y <= yc+5 & this.y >= yc-5)) {
                     moveVertically(this.y, yc);
                     decision = 1;
-                    System.out.println("Moving Vertically\n");
+                    System.out.println("Moved Vertically\n");
 
                     return ;
                 }
@@ -122,7 +124,7 @@ public class Queen extends Sprite implements MouseListener {
                 {
                     moveDiagonally(this.x, this.y, xc, yc);
                     decision = 2;
-                    System.out.println("Moving Diagonally\n");
+                    System.out.println("Moved Diagonally\n");
 
                     return ;
                 }
@@ -159,41 +161,79 @@ public class Queen extends Sprite implements MouseListener {
     {
         //assert to!=from;
         int distance = to - from;
-        if(distance > 0)
-        {
-            //Move forward
-            this.x+= distance;
-
+        //this.x+= distance;
+        //We need distance to be a multiple of 44
+        if(distance > 0) {
+            if (distance % 44 < 12) {
+                return;
+            } else if (distance % 44 > 32) {
+                distance += (44 - distance % 44);
+            }
         }
         else
         {
-            //Move backward
-         this.x+=distance;
-
+            int pd = -(distance);
+            if(pd % 44 < 12)
+            {
+                return;
+            }
+            else if(pd%44 > 32)
+            {
+                pd+=(44 - pd%44);
+            }
+            distance = -(pd);
         }
+
+        this.x+= distance;
     }
 
     public void moveVertically(int from, int to)
     {
         int distance = to - from;
-        if(distance > 0)
+        //We need distance to be a multiple of 44
+        if(distance%44 < 12)
         {
-            //Move forward
-            this.y+= distance;
-
+            distance-= distance%44;
         }
-        else
+        else if(distance%44 > 32)
         {
-            //Move backward
-            this.y+=distance;
-
+            distance+= (44 - distance%44);
         }
+
+        this.y+= distance;
     }
 
     public void moveDiagonally(int from_x, int from_y, int tox, int toy)
     {
-        this.x+= (tox - from_x);
-        this.y+= (toy - from_y);
+        //As of now, Going to 1st, 2nd quadrants work
+        int xd= (tox - from_x);
+        int yd= (toy - from_y);
+        if(xd%44 < 12)
+        {
+            xd-= xd%44;
+        }
+        else if(xd%44 > 32)
+        {
+            xd+= (44 - xd%44);
+        }
+
+        if(yd%44 < 12)
+        {
+            yd-= yd%44;
+        }
+        else if(yd%44 > 32)
+        {
+            yd+= (44 - yd%44);
+        }
+
+        this.x+= xd;
+        this.y+= yd;
+    }
+
+    public void recentre(int x, int y)
+    {
+        //Recentres the piece to the center of the nearest square
+
     }
 
     public void mouseReleased(MouseEvent e)
