@@ -57,6 +57,9 @@ public class Bishop extends Sprite implements MouseListener {
      */
 
     public void mouseClicked(MouseEvent e) {
+
+        if(!this.visible)
+            return;
         //System.out.println("Mouse clicked\n");
         int xc = e.getX();
         int yc = e.getY();

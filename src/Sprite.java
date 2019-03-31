@@ -115,12 +115,14 @@ public class Sprite implements MouseListener {
         int i=0;
         for(Sprite sprite:this.list)
         {
-            System.out.println(this.getClass()+"\n");
+            //System.out.println(this.getClass()+"\n");
             //if(this!=sprite && abs(this.list.get(i).x - xc)<=22 && abs(this.list.get(i).y - yc)<=22)
             if(this!=sprite && abs(this.list.get(i).x - xc)==0 && abs(this.list.get(i).y - yc)==0)
             {
                 this.list.get(i).visible = false;
-                //this.list.remove(sprite); //Not sure. Please check
+                this.list.remove(sprite); //Not sure. Please check
+                //for(int j=0;j<this.list.size();j++)
+                //System.out.println("J= "+ j+ this.list.get(j).getClass());
                 return;
             }
             i++;

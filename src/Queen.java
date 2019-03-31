@@ -71,6 +71,9 @@ public class Queen extends Sprite implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e)
     {
+        if(!this.visible)
+            return;
+
         int xc = e.getX();
         int yc = e.getY();
 

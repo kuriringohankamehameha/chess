@@ -56,7 +56,7 @@ public class Board extends JPanel {
     public King k;
     public Rook r;
 
-    public final ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
+    public static ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
 
 
     public Board() throws Exception
