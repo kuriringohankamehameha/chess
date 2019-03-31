@@ -68,7 +68,6 @@ public class Piece{
          * I also need to place the image icon onto the frame and move it as well
          */
 
-        assert from.hasPiece;
 
         boolean status = false;
 

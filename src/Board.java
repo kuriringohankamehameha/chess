@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -45,6 +46,10 @@ public class Board extends JPanel {
     int yqueen=ybishop;
 
     public Queen q;
+    public Bishop bishop_object;
+
+    public ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
+
 
 
     public Board() throws Exception
@@ -62,6 +67,12 @@ public class Board extends JPanel {
             }
         }
         */
+
+
+        /**
+         *
+         */
+
         ImageIcon b = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/chessboard.png");
         bg=b.getImage();
 
@@ -72,12 +83,25 @@ public class Board extends JPanel {
 
         bishop = bishop.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 
+        //Bishop : Image, x, y, width?, height?, visible?,type?
+        //Create sprite for bishop and add it into the arrayList
+
+        spriteArrayList.add(new Sprite(xbishop, ybishop, bishop, "BISHOP"));
+
+
         ImageIcon iqueen = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wqueen.png");
         queen = iqueen.getImage();
 
         queen = queen.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        //spriteArrayList.add(new Sprite(xqueen, yqueen, queen, "QUEEN"));
+
 
         q=new Queen(xqueen,yqueen - 352/2);
+        spriteArrayList.add(q);
+        bishop_object = new Bishop(xbishop, ybishop - 352/2);
+
+        //Add the queen object to the SpriteList/spriteArrayList.add(new Sprite(q));
+
 
 
 
@@ -85,6 +109,8 @@ public class Board extends JPanel {
         ActionListener al = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 repaint();
+                //System.out.println("Action Performed\n");
+
                 //paintImmediately(q.x-2,q.y-2,q.image.getWidth(null),q.image.getHeight(null));
                 //paintImmediately(q);
             }
@@ -147,7 +173,7 @@ public class Board extends JPanel {
         int col = from.col_index;
         for(int i=from.row_index; i<=to.row_index; i++)
         {
-            if(board[i][col].hasPiece)
+            if(board[i][col].hasSprite)
                 return false;
 
         }
@@ -165,7 +191,7 @@ public class Board extends JPanel {
         int row = from.row_index;
         for(int i=from.col_index; i<=to.col_index; i++)
         {
-            if(board[row][i].hasPiece)
+            if(board[row][i].hasSprite)
                 return false;
 
         }
@@ -195,7 +221,7 @@ public class Board extends JPanel {
                {
                    for(int j=from_col; j<=to_col; j++)
                    {
-                       if(board[i][j].hasPiece)
+                       if(board[i][j].hasSprite)
                            return false;
 
                    }
@@ -204,7 +230,7 @@ public class Board extends JPanel {
                {
                    for(int j=from_col; j>=to_col; j--)
                    {
-                       if(board[i][j].hasPiece)
+                       if(board[i][j].hasSprite)
                            return false;
 
                    }
@@ -222,7 +248,7 @@ public class Board extends JPanel {
                {
                    for(int j=from_col; j<=to_col; j++)
                    {
-                       if(board[i][j].hasPiece)
+                       if(board[i][j].hasSprite)
                            return false;
 
                    }
@@ -231,7 +257,7 @@ public class Board extends JPanel {
                {
                    for(int j=from_col; j>=to_col; j--)
                    {
-                       if(board[i][j].hasPiece)
+                       if(board[i][j].hasSprite)
                            return false;
 
                    }
@@ -278,6 +304,8 @@ public class Board extends JPanel {
         g.setColor(Color.WHITE);
 
         g.drawImage(q.image, q.x, q.y, this);
+
+        g.drawImage(bishop_object.image,bishop_object.x,bishop_object.y, this);
 
 
         //g.drawImage(ghost, x, y, this);

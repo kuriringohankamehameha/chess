@@ -48,6 +48,19 @@ public static void main(String[] args) {
                 Board board=new Board();
                 f.setContentPane(board);
                 f.addMouseListener(board.q);
+                f.addMouseListener(board.bishop_object);
+
+                /** TODO : Make multiple MouseListeners using enhanced for loop
+                for(Sprite sprite:board.spriteArrayList)
+                {
+                    if(sprite.label.equals("QUEEN")) {
+                        f.addMouseListener(sprite.queen);
+                        System.out.println("QUEEN LISTENER ADDED\n");
+                    }
+                    else if(sprite.label.equals("BISHOP"))
+                        f.addMouseListener(sprite.bishop);
+                }
+                 **/
 
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

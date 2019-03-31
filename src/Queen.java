@@ -13,7 +13,8 @@ public class Queen extends Sprite implements MouseListener {
     public Queen(int x,int y)
     {
         super(x,y);
-        super.type = "QUEEN";
+        super.label = "QUEEN";
+        super.visible = true;
 
         initQueen();
     }
@@ -125,6 +126,7 @@ public class Queen extends Sprite implements MouseListener {
                     moveDiagonally(this.x, this.y, xc, yc);
                     decision = 2;
                     System.out.println("Moved Diagonally\n");
+
 
                     return ;
                 }
