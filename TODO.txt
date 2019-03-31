@@ -8,4 +8,5 @@ TODO:
 
 UPDATE:
 Add movement restricted to recentering around a square.
-Movement should be confined only to squares
+Movement should be confined only to squares - DONE
+Whenever multiple pieces have to move diagonally, resolve conflict. They only move horizontally in this case (BUG)

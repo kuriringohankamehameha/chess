@@ -45,8 +45,12 @@ public class Board extends JPanel {
     int xqueen=xbishop+352/8;
     int yqueen=ybishop;
 
+    int xking = xqueen + 352/4;
+    int yking = yqueen - 352/2;
+
     public Queen q;
     public Bishop bishop_object;
+    public King k;
 
     public ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
 
@@ -79,22 +83,20 @@ public class Board extends JPanel {
 
         System.out.println("Board width = "+ bg.getWidth(null) + " ht = " + bg.getHeight(null));
 
-        ImageIcon ibishop = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wbishop.png");
-        bishop = ibishop.getImage();
-
-        bishop = bishop.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        //ImageIcon ibishop = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wbishop.png");
+        //bishop = ibishop.getImage();
+        //bishop = bishop.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 
         //Bishop : Image, x, y, width?, height?, visible?,type?
         //Create sprite for bishop and add it into the arrayList
 
         //spriteArrayList.add(new Sprite(xbishop, ybishop, bishop, "BISHOP"));
 
+        //Simple displays image of the queen
+        //ImageIcon iqueen = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wqueen.png");
+        //queen = iqueen.getImage();
 
-        ImageIcon iqueen = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wqueen.png");
-        queen = iqueen.getImage();
-
-        queen = queen.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-        //spriteArrayList.add(new Sprite(xqueen, yqueen, queen, "QUEEN"));
+        //queen = queen.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 
 
         q=new Queen(xqueen,yqueen - 352/2);
@@ -106,9 +108,9 @@ public class Board extends JPanel {
         bishop_object = new Bishop(xbishop, ybishop - 352/2);
         spriteArrayList.add(bishop_object);
 
-        //Add the queen object to the SpriteList/spriteArrayList.add(new Sprite(q));
-
-
+        //Add the King object to the SpriteList/spriteArrayList.add(new Sprite(k));
+        k = new King(xking, yking);
+        spriteArrayList.add(k);
 
 
 
@@ -308,16 +310,24 @@ public class Board extends JPanel {
         //dbImage = createImage(getWidth(), getHeight());
         //dbg = dbImage.getGraphics();
         //paintComponent(dbg);
-        g.drawImage(bishop,xbishop, ybishop, this);
 
-        g.drawImage(queen, xqueen, yqueen, this);
+
+        //g.drawImage(bishop,xbishop, ybishop, this);
+
+        //g.drawImage(queen, xqueen, yqueen, this);
 
         g.setColor(Color.WHITE);
 
-        g.drawImage(spriteArrayList.get(0).image, q.x, q.y, this);
+        for(int i=0; i<spriteArrayList.size(); i++)
+        {
+            g.drawImage(spriteArrayList.get(i).image, spriteArrayList.get(i).x,spriteArrayList.get(i).y, this);
+        }
 
-        g.drawImage(bishop_object.image,bishop_object.x,bishop_object.y, this);
+       // g.drawImage(spriteArrayList.get(0).image, q.x, q.y, this);
 
+        //g.drawImage(bishop_object.image,bishop_object.x,bishop_object.y, this);
+
+        //g.drawImage(k.image, xking, yking, this);
 
         //g.drawImage(ghost, x, y, this);
         //System.out.println("Bishop painted\n");

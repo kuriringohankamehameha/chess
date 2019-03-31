@@ -73,7 +73,7 @@ public class Bishop extends Sprite implements MouseListener {
         //System.out.println("Choice is " + this.choice + "\n");
 
 
-        System.out.println("Mouse Coordinates are (" + xc + " , " + yc + ") and object position is (" + this.x +", " + this.y + ")\n");
+        //System.out.println("Mouse Coordinates are (" + xc + " , " + yc + ") and object position is (" + this.x +", " + this.y + ")\n");
 
 
         //PROBLEM WITH BELOW PORTION
@@ -98,7 +98,7 @@ public class Bishop extends Sprite implements MouseListener {
             {
                 moveDiagonally(this.x, this.y, xc, yc);
                 decision = 2;
-                System.out.println("Moved Diagonally\n");
+                //System.out.println("Moved Diagonally\n");
 
                 return ;
             }

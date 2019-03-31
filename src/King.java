@@ -1,5 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import static java.lang.Math.abs;
 
 /**
  * King is an instance of a piece that can move only one step in every direction (up, down, left, right and diagonal)
@@ -7,33 +11,27 @@ import java.awt.*;
  * Place the king image on the board and make it move
  * */
 
-public class King extends Piece{
+public class King extends Sprite implements MouseListener{
 
-    private Image image;
-    private int w;
-    private int h;
-
-    private int x = 40;
-    private int y = 60;
-
-    public King()
+    public King(int x, int y)
     {
-        /**
-         * Default constructor for King
-         */
-        loadImage();
+        super(x,y);
+        super.label = "KING";
+        super.visible = true;
+
+        initKing();
 
     }
 
-    public void loadImage() {
+    public void initKing() {
 
-        ImageIcon ii = new ImageIcon("src/images/wking.png");
-        image = ii.getImage();
+       loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wking.png");
+        this.image = this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+        getImageDimensions();
 
-        w = image.getWidth(null);
-        h = image.getHeight(null);
     }
 
+    /*
     public Image getImage() {
 
         return image;
@@ -47,6 +45,67 @@ public class King extends Piece{
     public int getY()
     {
         return y;
+    }
+    */
+
+    public void mouseClicked(MouseEvent e)
+    {
+        //Default offsets for the mouse
+        int xoffset = -25;
+        int yoffset = -55;
+
+        int xc = e.getX();
+        int yc = e.getY();
+
+        xc+= xoffset;
+        yc+= yoffset;
+
+        int choice = 1; //To be used in multithreading
+
+        if(choice == 1)
+        {
+            if((this.y <= yc + 22 && this.y >= yc -22) && !(this.x <= xc + 22 && this.x >= xc -22))
+            {
+                if(abs(this.x - xc)<=50)
+                moveHorizontally(this.x, xc);
+                return ;
+            }
+
+            if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
+                if(abs(this.y - yc)<=50)
+                moveVertically(this.y, yc);
+                return ;
+            }
+
+            if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
+            {
+                if(abs(this.x - xc)<=50 && abs(this.y - yc)<=50)
+                moveDiagonally(this.x, this.y, xc, yc);
+                return ;
+            }
+
+
+        }
+    }
+
+    public void mousePressed(MouseEvent e)
+    {
+
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+
+    }
+
+    public void mouseExited(MouseEvent e)
+    {
+
+    }
+
+    public void mouseEntered(MouseEvent e)
+    {
+
     }
 
 

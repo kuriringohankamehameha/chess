@@ -82,5 +82,136 @@ public class Sprite {
     public void setVisible(Boolean visible) {
         this.visible = visible;
     }
+
+
+    public void moveHorizontally(int from, int to)
+    {
+        //assert to!=from;
+        int distance = to - from;
+        //this.x+= distance;
+        //We need distance to be a multiple of 44
+        if(distance > 0) {
+            if (distance % 44 < 12) {
+                distance-=(distance%44);
+            } else if (distance % 44 > 27) {
+                distance += (44 - distance % 44);
+            }
+            else
+                return;
+        }
+        else
+        {
+            int pd = -(distance);
+            if(pd % 44 < 12)
+            {
+                pd-=(pd)%44;
+            }
+            else if(pd%44 > 27)
+            {
+                pd+=(44 - pd%44);
+            }
+            else
+                return;
+            distance = -(pd);
+
+        }
+
+
+        assert distance%44 == 0;
+
+        this.x+= distance;
+    }
+
+    public void moveVertically(int from, int to)
+    {
+        int distance = to - from;
+        //We need distance to be a multiple of 44
+
+        /*
+        if(distance%44 < 12)
+        {
+            distance-= distance%44;
+        }
+        else if(distance%44 > 32)
+        {
+            distance+= (44 - distance%44);
+        }
+        else
+            return;
+
+        assert distance%44 == 0;
+        this.y+= distance;
+        */
+
+        //this.x+= distance;
+        //We need distance to be a multiple of 44
+        //NEED TO REFACTOR CODE
+        if(distance > 0) {
+            if (distance % 44 < 12) {
+                distance-=(distance%44);
+            } else if (distance % 44 > 27) {
+                distance += (44 - distance % 44);
+            }
+            else
+                return;
+        }
+        else
+        {
+            int pd = -(distance);
+            if(pd % 44 < 12)
+            {
+                pd-=(pd)%44;
+            }
+            else if(pd%44 > 27)
+            {
+                pd+=(44 - pd%44);
+            }
+            else
+                return;
+            distance = -(pd);
+
+        }
+        this.y+= distance;
+
+    }
+
+    public void moveDiagonally(int from_x, int from_y, int tox, int toy)
+    {
+        //As of now, Going to 1st, 2nd quadrants work
+
+    /*
+        int xd= (tox - from_x);
+        int yd= (toy - from_y);
+
+        if(xd%44 < 9) //CHANGE THIS
+        {
+            xd-= xd%44;
+        }
+        else if(xd%44 > 32)
+        {
+            xd+= (44 - xd%44);
+        }
+        else
+            return;
+
+        if(yd%44 < 12)
+        {
+            yd-= yd%44;
+        }
+        else if(yd%44 > 32)
+        {
+            yd+= (44 - yd%44);
+        }
+        else
+            return;
+
+        this.x+= xd;
+        this.y+= yd;
+        */
+
+        moveHorizontally(from_x,tox);
+        moveVertically(from_y,toy);
+    }
+
 }
 

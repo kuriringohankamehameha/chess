@@ -83,7 +83,7 @@ public class Queen extends Sprite implements MouseListener {
         //System.out.println("Choice is " + this.choice + "\n");
 
 
-        System.out.println("Mouse Coordinates are (" + xc + " , " + yc + ") and object position is (" + this.x +", " + this.y + ")\n");
+        //System.out.println("Mouse Coordinates are (" + xc + " , " + yc + ") and object position is (" + this.x +", " + this.y + ")\n");
 
 
         //PROBLEM WITH BELOW PORTION
@@ -107,7 +107,7 @@ public class Queen extends Sprite implements MouseListener {
                 //Choice is made and you can move
                 if((this.y <= yc+22 && this.y >=yc-22 )&& !(this.x <= xc+22 & this.x >= xc-22)) {
                     moveHorizontally(this.x, xc);
-                    System.out.println("Moved Horizontally\n");
+                    //System.out.println("Moved Horizontally\n");
                     decision = 0;
 
                     return ;
@@ -116,7 +116,7 @@ public class Queen extends Sprite implements MouseListener {
                 if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
                     moveVertically(this.y, yc);
                     decision = 1;
-                    System.out.println("Moved Vertically\n");
+                    //System.out.println("Moved Vertically\n");
 
                     return ;
                 }
@@ -125,7 +125,7 @@ public class Queen extends Sprite implements MouseListener {
                 {
                     moveDiagonally(this.x, this.y, xc, yc);
                     decision = 2;
-                    System.out.println("Moved Diagonally\n");
+                    //System.out.println("Moved Diagonally\n");
 
 
                     return ;
@@ -151,7 +151,6 @@ public class Queen extends Sprite implements MouseListener {
         return m;
 
     }
-
     /*
     public int[][] getAvailableMoves()
     {
