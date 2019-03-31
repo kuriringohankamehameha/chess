@@ -81,9 +81,9 @@ public class Queen extends Sprite implements MouseListener {
         this.choice = false;
         //System.out.println("Choice is " + this.choice + "\n");
 
-        /*
+
         System.out.println("Mouse Coordinates are (" + xc + " , " + yc + ") and object position is (" + this.x +", " + this.y + ")\n");
-        */
+
 
         //PROBLEM WITH BELOW PORTION
         /*
@@ -120,7 +120,7 @@ public class Queen extends Sprite implements MouseListener {
                     return ;
                 }
 
-                if(abs(this.x - xc)<=abs(this.y-yc)+5 && abs(this.x - xc)<=abs(this.y - yc)-5)
+                if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
                 {
                     moveDiagonally(this.x, this.y, xc, yc);
                     decision = 2;
@@ -199,6 +199,8 @@ public class Queen extends Sprite implements MouseListener {
     {
         int distance = to - from;
         //We need distance to be a multiple of 44
+
+        /*
         if(distance%44 < 12)
         {
             distance-= distance%44;
@@ -212,13 +214,45 @@ public class Queen extends Sprite implements MouseListener {
 
         assert distance%44 == 0;
         this.y+= distance;
+        */
+
+        //this.x+= distance;
+        //We need distance to be a multiple of 44
+        //NEED TO REFACTOR CODE
+        if(distance > 0) {
+            if (distance % 44 < 12) {
+                distance-=(distance%44);
+            } else if (distance % 44 > 27) {
+                distance += (44 - distance % 44);
+            }
+            else
+                return;
+        }
+        else
+        {
+            int pd = -(distance);
+            if(pd % 44 < 12)
+            {
+                pd-=(pd)%44;
+            }
+            else if(pd%44 > 27)
+            {
+                pd+=(44 - pd%44);
+            }
+            else
+                return;
+            distance = -(pd);
+
+        }
+        this.y+= distance;
+
     }
 
     public void moveDiagonally(int from_x, int from_y, int tox, int toy)
     {
         //As of now, Going to 1st, 2nd quadrants work
 
-
+    /*
         int xd= (tox - from_x);
         int yd= (toy - from_y);
 
@@ -246,10 +280,10 @@ public class Queen extends Sprite implements MouseListener {
 
         this.x+= xd;
         this.y+= yd;
+        */
 
-
-        //moveHorizontally(from_x,tox);
-        //moveVertically(from_y,toy);
+        moveHorizontally(from_x,tox);
+        moveVertically(from_y,toy);
     }
 
     public void recentre(int x, int y)
