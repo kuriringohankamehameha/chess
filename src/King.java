@@ -13,6 +13,8 @@ import static java.lang.Math.abs;
 
 public class King extends Sprite implements MouseListener{
 
+    public int choice=0;
+
     public King(int x, int y)
     {
         super(x,y);
@@ -60,7 +62,14 @@ public class King extends Sprite implements MouseListener{
         xc+= xoffset;
         yc+= yoffset;
 
-        int choice = 1; //To be used in multithreading
+        if(choice==0)
+        {
+            if(abs(this.x - xc)<=11 && abs(this.y - yc)<=11) {
+                moveDiagonally(this.x, this.y, xc, yc);
+                choice = 1;
+            }
+            return;
+        }
 
         if(choice == 1)
         {
@@ -68,12 +77,14 @@ public class King extends Sprite implements MouseListener{
             {
                 if(abs(this.x - xc)<=50)
                 moveHorizontally(this.x, xc);
+                choice = 0;
                 return ;
             }
 
             if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
                 if(abs(this.y - yc)<=50)
                 moveVertically(this.y, yc);
+                choice = 0;
                 return ;
             }
 
@@ -81,9 +92,12 @@ public class King extends Sprite implements MouseListener{
             {
                 if(abs(this.x - xc)<=50 && abs(this.y - yc)<=50)
                 moveDiagonally(this.x, this.y, xc, yc);
+                choice = 0;
                 return ;
             }
 
+            choice = 0;
+            return;
 
         }
     }

@@ -1,7 +1,11 @@
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 
-public class Sprite {
+import static java.lang.Math.abs;
+
+public class Sprite implements MouseListener {
 
     protected int x;
     protected int y;
@@ -212,6 +216,111 @@ public class Sprite {
         moveHorizontally(from_x,tox);
         moveVertically(from_y,toy);
     }
+
+    public void mousePressed(MouseEvent e)
+    {
+
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        //System.out.println("Mouse clicked\n");
+        int xc = e.getX();
+        int yc = e.getY();
+        int xoffset = -25;
+        int yoffset = -55;
+        xc+=xoffset;
+        yc+=yoffset;
+        int move[] = new int[2];
+
+        int decision = 0;
+
+
+            //Choice is made and you can move
+            if((this.y <= yc+22 && this.y >=yc-22 )&& !(this.x <= xc+22 & this.x >= xc-22)) {
+                moveHorizontally(this.x, xc);
+                decision = 0;
+                return ;
+            }
+
+            if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
+                moveVertically(this.y, yc);
+                decision = 1;
+                return ;
+            }
+
+            if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
+            {
+                moveDiagonally(this.x, this.y, xc, yc);
+                decision = 2;
+                return ;
+            }
+
+            /**
+             * TODO: Highlight available squares based on decision value on the board (??)
+             */
+
+
+
+
+    }
+
+    public int[] makeChoice(int x, int y)
+    {
+        //After this, you can only click on the highlighted squares, or click the piece itself to revert back
+        //Setting the from and to coordinates for movement, if possible
+        int m[] = new int[2];
+        m[0] = x;
+        m[1] = y;
+
+        return m;
+
+    }
+    /*
+    public int[][] getAvailableMoves()
+    {
+
+    }
+    */
+
+    public void recentre(int x, int y)
+    {
+        //Recentres the piece to the center of the nearest square
+        if(x%44!=0 && x%44>22)
+        {
+            this.x=x+(x%44-22);
+        }
+        else if(x%44!=0 && x%44<22)
+        {
+            this.x=x-(22-x%44);
+        }
+
+        if(y%44!=0 && y%44>22)
+        {
+            this.y=y+(y%44-22);
+        }
+        else if(y%44!=0 && y%44<22)
+        {
+            this.y=y-(22-y%44);
+        }
+
+
+    }
+
+    public void mouseReleased(MouseEvent e)
+    {
+
+    }
+
+    public void mouseExited(MouseEvent e)
+    {
+
+    }
+
+    public void mouseEntered(MouseEvent e)
+    {
+
+    }
+
 
 }
 
