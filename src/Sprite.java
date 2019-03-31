@@ -351,6 +351,16 @@ public class Sprite implements MouseListener {
 
     }
 
+    public boolean isPiece(int x, int y)
+    {
+        for(int i=0;i<this.list.size();i++) {
+            if (this.list.get(i).visible==true)
+                return true;
+        }
+
+        return false;
+    }
+
     public void mouseReleased(MouseEvent e)
     {
 

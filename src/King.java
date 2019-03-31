@@ -70,26 +70,33 @@ public class King extends Sprite implements MouseListener{
 
         if(choice == 1)
         {
+            System.out.println(abs(this.x-xc) + " , " + abs(this.y - yc));
             if((this.y <= yc + 22 && this.y >= yc -22) && !(this.x <= xc + 22 && this.x >= xc -22))
             {
-                if(abs(this.x - xc)<=50)
-                moveHorizontally(this.x, xc);
+                if(abs(this.x - xc)<=50) {
+                    moveHorizontally(this.x, xc);
+                    resolveConflicts(this.x, this.y);
+                }
                 choice = 0;
                 return ;
             }
 
-            if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
-                if(abs(this.y - yc)<=50)
-                moveVertically(this.y, yc);
+            if((abs(this.x - xc)<=22 && !(abs(this.y - yc)<=22))) {
+                if(abs(this.y - yc)<=60) {
+                    moveVertically(this.y, yc);
+                    resolveConflicts(this.x, this.y);
+                }
                 choice = 0;
                 return ;
             }
 
             if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
             {
-                if(abs(this.x - xc)<=50 && abs(this.y - yc)<=50)
-                moveDiagonally(this.x, this.y, xc, yc);
-                choice = 0;
+                if(abs(this.x - xc)<=50 && abs(this.y - yc)<=50) {
+                    moveDiagonally(this.x, this.y, xc, yc);
+                    resolveConflicts(this.x, this.y);
+                }
+                    choice = 0;
                 return ;
             }
 
