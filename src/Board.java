@@ -48,9 +48,13 @@ public class Board extends JPanel {
     int xking = xqueen + 352/4;
     int yking = yqueen - 352/2;
 
+    int xrook = xbishop - 352/8;
+    int yrook = ybishop - 352/4;
+
     public Queen q;
     public Bishop bishop_object;
     public King k;
+    public Rook r;
 
     public ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
 
@@ -111,6 +115,10 @@ public class Board extends JPanel {
         //Add the King object to the SpriteList/spriteArrayList.add(new Sprite(k));
         k = new King(xking, yking);
         spriteArrayList.add(k);
+
+        //Add rook
+        r = new Rook(xrook, yrook);
+        spriteArrayList.add(r);
 
 
 
