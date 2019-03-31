@@ -51,7 +51,6 @@ public class Board extends JPanel {
     public ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
 
 
-
     public Board() throws Exception
     {
         //Initialises 64 squares into an array board[][]
@@ -73,6 +72,8 @@ public class Board extends JPanel {
          *
          */
 
+
+
         ImageIcon b = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/chessboard.png");
         bg=b.getImage();
 
@@ -86,7 +87,7 @@ public class Board extends JPanel {
         //Bishop : Image, x, y, width?, height?, visible?,type?
         //Create sprite for bishop and add it into the arrayList
 
-        spriteArrayList.add(new Sprite(xbishop, ybishop, bishop, "BISHOP"));
+        //spriteArrayList.add(new Sprite(xbishop, ybishop, bishop, "BISHOP"));
 
 
         ImageIcon iqueen = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wqueen.png");
@@ -98,7 +99,12 @@ public class Board extends JPanel {
 
         q=new Queen(xqueen,yqueen - 352/2);
         spriteArrayList.add(q);
+
+
+        //System.out.println(spriteArrayList + ", " + spriteArrayList.get(0).x);
+
         bishop_object = new Bishop(xbishop, ybishop - 352/2);
+        spriteArrayList.add(bishop_object);
 
         //Add the queen object to the SpriteList/spriteArrayList.add(new Sprite(q));
 
@@ -117,6 +123,11 @@ public class Board extends JPanel {
         };
         Timer timer = new Timer(50,al);
         timer.start();
+
+    }
+
+    public void add(ArrayList list)
+    {
 
     }
 
@@ -303,7 +314,7 @@ public class Board extends JPanel {
 
         g.setColor(Color.WHITE);
 
-        g.drawImage(q.image, q.x, q.y, this);
+        g.drawImage(spriteArrayList.get(0).image, q.x, q.y, this);
 
         g.drawImage(bishop_object.image,bishop_object.x,bishop_object.y, this);
 

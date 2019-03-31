@@ -47,20 +47,19 @@ public static void main(String[] args) {
                 f.setBackground(Color.BLUE);
                 Board board=new Board();
                 f.setContentPane(board);
-                f.addMouseListener(board.q);
-                f.addMouseListener(board.bishop_object);
+                //f.addMouseListener(board.q);
+                //f.addMouseListener(board.bishop_object);
 
-                /** TODO : Make multiple MouseListeners using enhanced for loop
-                for(Sprite sprite:board.spriteArrayList)
+                // TODO : Make multiple MouseListeners using enhanced for loop (Status: DONE)
+                for(int i=0;i<board.spriteArrayList.size();i++)
                 {
-                    if(sprite.label.equals("QUEEN")) {
-                        f.addMouseListener(sprite.queen);
-                        System.out.println("QUEEN LISTENER ADDED\n");
+                    if(board.spriteArrayList.get(i).label.equals("QUEEN")) {
+                        f.addMouseListener((Queen)board.spriteArrayList.get(i));
                     }
-                    else if(sprite.label.equals("BISHOP"))
-                        f.addMouseListener(sprite.bishop);
+                    else if(board.spriteArrayList.get(i).label.equals("BISHOP"))
+                        f.addMouseListener(((Bishop)board.spriteArrayList.get(i)));
                 }
-                 **/
+
 
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
