@@ -354,7 +354,7 @@ public class Sprite implements MouseListener {
     public boolean isPiece(int x, int y)
     {
         for(int i=0;i<this.list.size();i++) {
-            if (this.list.get(i).visible==true)
+            if ((this.list.get(i).visible==true) && this.list.get(i).x==x && this.list.get(i).y==y)
                 return true;
         }
 

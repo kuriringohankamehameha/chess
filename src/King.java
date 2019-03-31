@@ -70,7 +70,6 @@ public class King extends Sprite implements MouseListener{
 
         if(choice == 1)
         {
-            System.out.println(abs(this.x-xc) + " , " + abs(this.y - yc));
             if((this.y <= yc + 22 && this.y >= yc -22) && !(this.x <= xc + 22 && this.x >= xc -22))
             {
                 if(abs(this.x - xc)<=50) {
