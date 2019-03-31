@@ -45,25 +45,10 @@ public class King extends Sprite implements MouseListener{
 
     }
 
-    /*
-    public Image getImage() {
-
-        return image;
-    }
-
-    public int getX()
-    {
-        return x;
-    }
-
-    public int getY()
-    {
-        return y;
-    }
-    */
-
     public void mouseClicked(MouseEvent e)
     {
+        if(!this.visible)
+            return;
         //Default offsets for the mouse
         int xoffset = -25;
         int yoffset = -55;

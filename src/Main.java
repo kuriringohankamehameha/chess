@@ -65,6 +65,9 @@ public static void main(String[] args) {
                     else if(board.spriteArrayList.get(i).label.equals("ROOK")) {
                         f.addMouseListener(((Rook) board.spriteArrayList.get(i)));
                     }
+                    else if(board.spriteArrayList.get(i).label.equals("KNIGHT")) {
+                        f.addMouseListener(((Knight) board.spriteArrayList.get(i)));
+                    }
 
                 }
 

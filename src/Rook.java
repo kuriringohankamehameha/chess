@@ -40,6 +40,8 @@ public class Rook extends Sprite implements MouseListener {
 
     public void mouseClicked(MouseEvent e)
     {
+        if(!this.visible)
+            return;
         //Default offsets for the mouse
         int xoffset = -25;
         int yoffset = -55;
