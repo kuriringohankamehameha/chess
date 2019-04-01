@@ -386,9 +386,9 @@ public class Sprite implements MouseListener {
     {
         if(c==0) {
             for (int i = 0; i < 8; i++) {
-                if (this.x != 44 * i) {
-                    this.moveSetQueenx.add(i, 44 * i);
-                    this.moveSetQueeny.add(i,this.y);
+                if (!(abs(this.x - 44 * i)<=5)) {
+                    this.moveSetQueenx.add(44 * i);
+                    this.moveSetQueeny.add(this.y);
 
                 }
 
@@ -399,9 +399,9 @@ public class Sprite implements MouseListener {
         else if(c==1)
         {
             for (int i = 0; i < 8; i++) {
-                if (this.y != 44 * i) {
-                    this.moveSetQueenx.add(i,this.x);
-                    this.moveSetQueeny.add(i, 44 * i);
+                if (!(abs(this.y - 44 * i)<=5)){
+                    this.moveSetQueenx.add(this.x);
+                    this.moveSetQueeny.add(44 * i);
                 }
 
             }
@@ -409,23 +409,36 @@ public class Sprite implements MouseListener {
 
         else if(c==2)
         {
-            //Diagonal highlighting doesn't work
+            //Diagonal highlighting doesn't work. EDIT:Works now
             int k=0;
             for(int i=0; i<8;i++)
             {
                 for(int j=0; j<8; j++)
                 {
                     //System.out.println("i = "+ i + " j = " + j + "\n");
-                    System.out.println("this.x - 44*i = "+ abs(this.x - 44*i) + " j = " + abs(this.y - 44*j) + "\n");
-
-
                     if(this.x!=44*i && this.y!=44*j && (abs(abs(this.x - 44*i) - abs(this.y - 44*j))<=5))
                     {
-                        this.moveSetQueenx.add(k, 44*i);
-                        this.moveSetQueeny.add(k++,44*j);
+                        this.moveSetQueenx.add(44*i);
+                        this.moveSetQueeny.add(44*j);
                     }
                 }
             }
+        }
+    }
+
+    public void removeSet(Sprite sp)
+    {
+        if(sp.label=="QUEEN")
+        {
+            int number = this.moveSetQueenx.size() - 1; //Careful!
+            for(int i=number;i>=0;i--)
+            {
+                moveSetQueenx.remove(i);
+                moveSetQueeny.remove(i);
+                //System.out.println("Removed "+i+"\n");
+            }
+
+            return;
         }
     }
 

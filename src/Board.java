@@ -339,8 +339,11 @@ public class Board extends JPanel {
         //g.drawImage(bishop,xbishop, ybishop, this);
 
         //g.drawImage(queen, xqueen, yqueen, this);
+        //Set Graphics Color
+        int alpha = 127; // 50% transparent
+        Color myColour = new Color(255, 100, 100, alpha);
 
-        g.setColor(Color.ORANGE);
+        g.setColor(myColour);
 
         for(int i=0; i<spriteArrayList.size(); i++)
         {
@@ -350,6 +353,7 @@ public class Board extends JPanel {
             if(spriteArrayList.get(i).setChoiceVisible) {
                 for(int j=0;j<spriteArrayList.get(i).moveSetQueenx.size();j++)
                 g.fillRect(spriteArrayList.get(i).moveSetQueenx.get(j), spriteArrayList.get(i).moveSetQueeny.get(j), 44, 44);
+                //spriteArrayList.get(i).removeSet(spriteArrayList.get(i));
             }
         }
 

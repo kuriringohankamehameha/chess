@@ -100,7 +100,6 @@ public class Queen extends Sprite implements MouseListener {
                 choice = 1;
                 //Display all choice squares
                 displayChoices(this);
-
             }
             return;
         }
@@ -112,6 +111,7 @@ public class Queen extends Sprite implements MouseListener {
             choice=0;
 
             this.setChoiceVisible = false; //Doubt
+            removeSet(this);
             return;
         }
 
