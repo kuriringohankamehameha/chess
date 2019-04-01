@@ -37,6 +37,8 @@ public class Bishop extends Sprite implements MouseListener {
 
         getImageDimensions();
         System.out.println("Bishop\n");
+        super.moveSetQueenx = new ArrayList<>(28);
+        super.moveSetQueeny = new ArrayList<>(28);
     }
 
     public void move() {
@@ -71,7 +73,7 @@ public class Bishop extends Sprite implements MouseListener {
 
         //Add to moveset
 
-        //addtoSet(this,2);
+        addtoSet(this,2);
 
         if(choice == 0)
         {
@@ -79,6 +81,7 @@ public class Bishop extends Sprite implements MouseListener {
             {
                 moveDiagonally(this.x,this.y,xc,yc);
                 choice=1;
+                displayChoices(this);
                 return;
             }
 
@@ -91,6 +94,9 @@ public class Bishop extends Sprite implements MouseListener {
                 moveDiagonally(this.x, this.y, xc, yc);
                 resolveConflicts(this.x,this.y);
                 choice=0;
+
+                this.setChoiceVisible = false;
+                removeSet(this);
                 return ;
             }
 
@@ -98,6 +104,9 @@ public class Bishop extends Sprite implements MouseListener {
              * TODO: Highlight available squares based on decision value on the board (??)
              */
             choice = 0;
+            this.setChoiceVisible = false;
+            removeSet(this);
+            return;
         }
 
 

@@ -305,6 +305,18 @@ public class Sprite implements MouseListener {
 
             return;
         }
+
+        if(sp.label=="BISHOP")
+        {
+            int number = this.moveSetQueenx.size() - 1; //Careful!
+            for(int i=number;i>=0;i--)
+            {
+                moveSetQueenx.remove(i);
+                moveSetQueeny.remove(i);
+            }
+
+            return;
+        }
     }
 
     public void displayChoices(Sprite sp)
