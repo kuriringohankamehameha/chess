@@ -38,6 +38,8 @@ public class Queen extends Sprite implements MouseListener {
         loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wqueen.png");
         this.image=this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
+        super.moveSetQueenx = new ArrayList<>(28);
+        super.moveSetQueeny = new ArrayList<>(28);
     }
 
     public void move(Square from, Square to)
@@ -83,11 +85,22 @@ public class Queen extends Sprite implements MouseListener {
         xc+=xoffset;
         yc+=yoffset;
 
+        //Set movesetqueen
+        //First horizontally
+        addtoSet(0);
+        //Vertically
+        addtoSet(1);
+        //Diagonally
+        addtoSet(2);
+
         if(choice == 0)
         {
             if(abs(this.x - xc)<=11 && abs(this.y - yc)<=11) {
                 moveDiagonally(this.x, this.y, xc, yc);
                 choice = 1;
+                //Display all choice squares
+                displayChoices(this);
+
             }
             return;
         }
@@ -97,6 +110,8 @@ public class Queen extends Sprite implements MouseListener {
             super.mouseClicked(e);
             super.resolveConflicts(this.x,this.y);
             choice=0;
+
+            this.setChoiceVisible = false; //Doubt
             return;
         }
 

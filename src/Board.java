@@ -346,7 +346,13 @@ public class Board extends JPanel {
         {
             if(spriteArrayList.get(i).visible)
             g.drawImage(spriteArrayList.get(i).image, spriteArrayList.get(i).x,spriteArrayList.get(i).y, this);
+            //Draw choices, if any
+            if(spriteArrayList.get(i).setChoiceVisible) {
+                for(int j=0;j<spriteArrayList.get(i).moveSetQueenx.size();j++)
+                g.drawRect(spriteArrayList.get(i).moveSetQueenx.get(j), spriteArrayList.get(i).moveSetQueeny.get(j), 44, 44);
+            }
         }
+
 
        // g.drawImage(spriteArrayList.get(0).image, q.x, q.y, this);
 

@@ -17,6 +17,8 @@ public class Sprite implements MouseListener {
     protected boolean visible;
     protected Image image;
     public String label;
+    public boolean setChoiceVisible = false;
+
 
     //All pieces
     public Queen queen;
@@ -25,6 +27,10 @@ public class Sprite implements MouseListener {
 
     //List
     public ArrayList<Sprite> list;
+    public ArrayList<Integer> moveSetQueenx;
+    public ArrayList<Integer> moveSetQueeny;
+    public int moveSetSize = 0;
+
 
 
     public Sprite()
@@ -373,6 +379,59 @@ public class Sprite implements MouseListener {
 
     public void mouseEntered(MouseEvent e)
     {
+
+    }
+
+    public void addtoSet(int c)
+    {
+        if(c==0) {
+            for (int i = 0; i < 8; i++) {
+                if (this.x != 44 * i) {
+                    this.moveSetQueenx.add(i, 44 * i);
+                    this.moveSetQueeny.add(i,this.y);
+
+                }
+
+
+            }
+        }
+
+        else if(c==1)
+        {
+            for (int i = 0; i < 8; i++) {
+                if (this.y != 44 * i) {
+                    this.moveSetQueenx.add(i,this.x);
+                    this.moveSetQueeny.add(i, 44 * i);
+                }
+
+            }
+        }
+
+        else if(c==2)
+        {
+            int k=0;
+            for(int i=0; i<8;i++)
+            {
+                for(int j=0; j<8; j++)
+                {
+                    if(this.x!=44*i && this.y!=44*j && (this.x - 44*i == this.y - 44*j))
+                    {
+                        this.moveSetQueenx.add(k, 44*i);
+                        this.moveSetQueeny.add(k++,44*j);
+                    }
+                }
+            }
+        }
+    }
+
+    public void displayChoices(Sprite sp)
+    {
+        //Display all available choice squares
+        if(sp.label=="QUEEN")
+        {
+            setChoiceVisible = true;
+            return;
+        }
 
     }
 
