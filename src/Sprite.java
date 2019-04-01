@@ -244,41 +244,48 @@ public class Sprite implements MouseListener {
 
     }
 
-    public void addtoSet(int c)
+    public void addtoSet(Sprite sp,int c)
     {
-        if(c==0) {
-            for (int i = 0; i < 8; i++) {
-                if (!(abs(this.x - 44 * i)<=5)) {
-                    this.moveSetQueenx.add(44 * i);
-                    this.moveSetQueeny.add(this.y);
+        if(sp.label == "QUEEN") {
+            if (c == 0) {
+                for (int i = 0; i < 8; i++) {
+                    if (!(abs(this.x - 44 * i) <= 5)) {
+                        this.moveSetQueenx.add(44 * i);
+                        this.moveSetQueeny.add(this.y);
+
+                    }
+
 
                 }
+            } else if (c == 1) {
+                for (int i = 0; i < 8; i++) {
+                    if (!(abs(this.y - 44 * i) <= 5)) {
+                        this.moveSetQueenx.add(this.x);
+                        this.moveSetQueeny.add(44 * i);
+                    }
 
-
+                }
+            } else if (c == 2) {
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
+                        if (this.x != 44 * i && this.y != 44 * j && (abs(abs(this.x - 44 * i) - abs(this.y - 44 * j)) <= 5)) {
+                            this.moveSetQueenx.add(44 * i);
+                            this.moveSetQueeny.add(44 * j);
+                        }
+                    }
+                }
             }
         }
 
-        else if(c==1)
+        else if(sp.label == "BISHOP")
         {
-            for (int i = 0; i < 8; i++) {
-                if (!(abs(this.y - 44 * i)<=5)){
-                    this.moveSetQueenx.add(this.x);
-                    this.moveSetQueeny.add(44 * i);
-                }
-
-            }
-        }
-
-        else if(c==2)
-        {
-            for(int i=0; i<8;i++)
-            {
-                for(int j=0; j<8; j++)
-                {
-                    if(this.x!=44*i && this.y!=44*j && (abs(abs(this.x - 44*i) - abs(this.y - 44*j))<=5))
-                    {
-                        this.moveSetQueenx.add(44*i);
-                        this.moveSetQueeny.add(44*j);
+            if (c == 2) {
+                for (int i = 0; i < 8; i++) {
+                    for (int j = 0; j < 8; j++) {
+                        if (this.x != 44 * i && this.y != 44 * j && (abs(abs(this.x - 44 * i) - abs(this.y - 44 * j)) <= 5)) {
+                            this.moveSetQueenx.add(44 * i);
+                            this.moveSetQueeny.add(44 * j);
+                        }
                     }
                 }
             }
@@ -304,6 +311,12 @@ public class Sprite implements MouseListener {
     {
         //Display all available choice squares
         if(sp.label=="QUEEN")
+        {
+            setChoiceVisible = true;
+            return;
+        }
+
+        else if(sp.label=="BISHOP")
         {
             setChoiceVisible = true;
             return;

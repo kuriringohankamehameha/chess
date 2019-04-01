@@ -62,34 +62,25 @@ public class Knight extends Sprite implements MouseListener {
 
         if(choice == 1)
         {
-            System.out.println("X, Y diff are  ("+ abs(this.x - xc) + " , " + abs(this.y - yc) + " )\n");
             //2 steps in horiz and one vertical
 
-            //if((abs(this.y + 44 - yc)<= 22) && !(this.x <= xc + 22 && this.x >= xc -22))
             if(abs(this.x - xc)<=50 && abs(this.y - yc)<=110 && abs(this.x - xc)>=22 && abs(this.y - yc)>=22)
             {
 
-                //if(abs(this.x - xc)<=50+44) {
-                //if(abs(this.x - xc)<=44+44+22) {
                     moveHorizontally(this.x, xc);
                     moveVertically(this.y, yc);
                     resolveConflicts(this.x, this.y);
-                //}
                 choice = 0;
                 return ;
             }
 
-            //if((abs(this.x + 44- xc)<=22)&& !(this.y <= yc+22 & this.y >= yc-22)) {
             if(abs(this.x - xc)<=110 && abs(this.y - yc)<=65 && abs(this.x - xc)>=22 && abs(this.y - yc)>=22)
             {
-                //if(abs(this.y - yc)<=44+44+22) {
                     moveHorizontally(this.x,xc);
                     moveVertically(this.y, yc);
                     resolveConflicts(this.x, this.y);
-
-                //}
-                choice = 0;
-                return ;
+                    choice = 0;
+                    return ;
             }
 
             choice = 0;

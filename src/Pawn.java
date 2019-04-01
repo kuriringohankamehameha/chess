@@ -72,9 +72,6 @@ public class Pawn extends Sprite implements MouseListener {
 
             if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
             {
-                System.out.println(abs(this.x-xc) + " , " + abs(this.y - yc));
-
-                //if(this.x - xc<=50 && (this.y - yc)<=50) {
                 Boolean a = isPiece(this.x+44,this.y-44);
                 Boolean b = isPiece(this.x-44,this.y-44);
                 if((this.y>yc)&&(a || b)){

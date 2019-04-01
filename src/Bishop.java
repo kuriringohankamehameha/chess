@@ -60,18 +60,18 @@ public class Bishop extends Sprite implements MouseListener {
 
         if(!this.visible)
             return;
-        //System.out.println("Mouse clicked\n");
         int xc = e.getX();
         int yc = e.getY();
         int xoffset = -25;
         int yoffset = -55;
         xc+=xoffset;
         yc+=yoffset;
-        int move[] = new int[2];
-        int decision = 0;
 
         //Make 2 threads
-        //Thread[] decisionThread = new Thread[2];
+
+        //Add to moveset
+
+        //addtoSet(this,2);
 
         if(choice == 0)
         {
@@ -90,7 +90,6 @@ public class Bishop extends Sprite implements MouseListener {
             {
                 moveDiagonally(this.x, this.y, xc, yc);
                 resolveConflicts(this.x,this.y);
-                decision = 2;
                 choice=0;
                 return ;
             }
@@ -103,25 +102,6 @@ public class Bishop extends Sprite implements MouseListener {
 
 
     }
-
-    public int[] makeChoice(int x, int y)
-    {
-        //After this, you can only click on the highlighted squares, or click the piece itself to revert back
-        //Setting the from and to coordinates for movement, if possible
-        int m[] = new int[2];
-        m[0] = x;
-        m[1] = y;
-
-        return m;
-
-    }
-
-    /*
-    public int[][] getAvailableMoves()
-    {
-
-    }
-    */
 
     public void moveDiagonally(int from_x, int from_y, int tox, int toy)
     {

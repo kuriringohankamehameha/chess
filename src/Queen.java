@@ -87,11 +87,11 @@ public class Queen extends Sprite implements MouseListener {
 
         //Set movesetqueen
         //First horizontally
-        addtoSet(0);
+        addtoSet(this,0);
         //Vertically
-        addtoSet(1);
+        addtoSet(this,1);
         //Diagonally
-        addtoSet(2);
+        addtoSet(this,2);
 
         if(choice == 0)
         {
