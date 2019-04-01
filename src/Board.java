@@ -66,57 +66,22 @@ public class Board extends JPanel {
 
     public static ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
 
+    int alpha = 127/2; // 75% transparent
+    Color myColour = new Color(155, 150, 150, alpha);
 
     public Board() throws Exception
     {
-        //Initialises 64 squares into an array board[][]
-
-        /* NOT WORKING
-        for(int i=0; i<DEFAULT_SIDES; i++)
-        {
-            for(int j=0; j<DEFAULT_SIDES; j++)
-            {
-                //Create square
-                board[i][j] = new Square(i,j);
-
-            }
-        }
-        */
-
-
-        /**
-         *
-         */
-
-
-
         ImageIcon b = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/chessboard.png");
         bg=b.getImage();
 
         System.out.println("Board width = "+ bg.getWidth(null) + " ht = " + bg.getHeight(null));
 
-        //ImageIcon ibishop = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wbishop.png");
-        //bishop = ibishop.getImage();
-        //bishop = bishop.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-
-        //Bishop : Image, x, y, width?, height?, visible?,type?
-        //Create sprite for bishop and add it into the arrayList
-
-        //spriteArrayList.add(new Sprite(xbishop, ybishop, bishop, "BISHOP"));
-
-        //Simple displays image of the queen
-        //ImageIcon iqueen = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wqueen.png");
-        //queen = iqueen.getImage();
-
-        //queen = queen.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-
-
+        //Add queen
         q=new Queen(xqueen,yqueen - 352/2,spriteArrayList);
         spriteArrayList.add(q);
 
 
-        //System.out.println(spriteArrayList + ", " + spriteArrayList.get(0).x);
-
+        //Add bishop
         bishop_object = new Bishop(xbishop, ybishop - 352/2,spriteArrayList);
         spriteArrayList.add(bishop_object);
 
@@ -141,43 +106,9 @@ public class Board extends JPanel {
         ActionListener al = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 repaint();
-                //System.out.println("Action Performed\n");
-
-                //paintImmediately(q.x-2,q.y-2,q.image.getWidth(null),q.image.getHeight(null));
-                //paintImmediately(q);
             }
         };
         Timer timer = new Timer(80,al);
-        timer.start();
-
-    }
-
-    public void add(ArrayList list)
-    {
-
-    }
-
-    public void paintImmediately(Queen queen) {
-        //Paints the new position of the Queen
-        int offset = q.offset;
-        super.paintImmediately(queen.x - 2, queen.y - 2, queen.image.getWidth(null), queen.image.getHeight(null));
-    }
-
-    public void paintImmediately(Bishop bishop) {
-        //Paints the new position of the Bishop
-        super.paintImmediately(bishop.x - 2, bishop.y - 2, bishop.image.getWidth(null), bishop.image.getHeight(null));
-    }
-
-    public void updateBoard(Piece p)    //DOES NOT WORK
-    {
-        ActionListener al = new ActionListener() {
-            public void actionPerformed(ActionEvent ae) {
-                q.move(0,5);
-                System.out.println("Queen has moved\n");
-                repaint();
-            }
-        };
-        Timer timer = new Timer(50,al);
         timer.start();
 
     }
@@ -331,18 +262,7 @@ public class Board extends JPanel {
         super.paintComponent(g);
         g.drawImage(bg, 0, 0, null);
 
-        //dbImage = createImage(getWidth(), getHeight());
-        //dbg = dbImage.getGraphics();
-        //paintComponent(dbg);
-
-
-        //g.drawImage(bishop,xbishop, ybishop, this);
-
-        //g.drawImage(queen, xqueen, yqueen, this);
         //Set Graphics Color
-        int alpha = 127; // 50% transparent
-        Color myColour = new Color(255, 100, 100, alpha);
-
         g.setColor(myColour);
 
         for(int i=0; i<spriteArrayList.size(); i++)
@@ -353,27 +273,14 @@ public class Board extends JPanel {
             if(spriteArrayList.get(i).setChoiceVisible) {
                 for(int j=0;j<spriteArrayList.get(i).moveSetQueenx.size();j++)
                 g.fillRect(spriteArrayList.get(i).moveSetQueenx.get(j), spriteArrayList.get(i).moveSetQueeny.get(j), 44, 44);
-                //spriteArrayList.get(i).removeSet(spriteArrayList.get(i));
             }
         }
-
-
-       // g.drawImage(spriteArrayList.get(0).image, q.x, q.y, this);
-
-        //g.drawImage(bishop_object.image,bishop_object.x,bishop_object.y, this);
-
-        //g.drawImage(k.image, xking, yking, this);
-
-        //g.drawImage(ghost, x, y, this);
-        //System.out.println("Bishop painted\n");
 
     }
 
     public void doDrawing(Graphics g)
     {
         Graphics2D g2d = (Graphics2D) g;
-
-        //g2d.drawImage(bishop.getImage(), bishop.getX(),bishop.getY(), this);
     }
 
 
