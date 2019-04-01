@@ -35,6 +35,8 @@ public class Rook extends Sprite implements MouseListener {
         loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wrook.png");
         this.image = this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
+        super.moveSetQueenx = new ArrayList<>(28);
+        super.moveSetQueeny = new ArrayList<>(28);
 
     }
 
@@ -52,11 +54,17 @@ public class Rook extends Sprite implements MouseListener {
         xc+= xoffset;
         yc+= yoffset;
 
+        addtoSet(this,0);
+        addtoSet(this,1);
+
+
+
         if(choice==0)
         {
             if(abs(this.x - xc)<=11 && abs(this.y - yc)<=11) {
                 moveDiagonally(this.x, this.y, xc, yc);
                 choice = 1;
+                displayChoices(this);
             }
             return;
         }
@@ -67,6 +75,8 @@ public class Rook extends Sprite implements MouseListener {
                 moveHorizontally(this.x, xc);
                 resolveConflicts(this.x,this.y);
                 choice = 0;
+                this.setChoiceVisible = false;
+                removeSet(this);
                 return ;
             }
 
@@ -74,10 +84,14 @@ public class Rook extends Sprite implements MouseListener {
                 moveVertically(this.y, yc);
                 resolveConflicts(this.x,this.y);
                 choice = 0;
+                this.setChoiceVisible = false;
+                removeSet(this);
                 return ;
             }
 
             choice = 0;
+            this.setChoiceVisible = false;
+            removeSet(this);
             return;
 
         }

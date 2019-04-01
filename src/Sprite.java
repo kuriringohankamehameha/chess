@@ -290,6 +290,30 @@ public class Sprite implements MouseListener {
                 }
             }
         }
+
+        if(sp.label == "ROOK") {
+            if (c == 0) {
+                for (int i = 0; i < 8; i++) {
+                    if (!(abs(this.x - 44 * i) <= 5)) {
+                        this.moveSetQueenx.add(44 * i);
+                        this.moveSetQueeny.add(this.y);
+
+                    }
+
+
+                }
+            } else if (c == 1) {
+                for (int i = 0; i < 8; i++) {
+                    if (!(abs(this.y - 44 * i) <= 5)) {
+                        this.moveSetQueenx.add(this.x);
+                        this.moveSetQueeny.add(44 * i);
+                    }
+
+                }
+            }
+        }
+
+
     }
 
     public void removeSet(Sprite sp)
@@ -317,6 +341,18 @@ public class Sprite implements MouseListener {
 
             return;
         }
+
+        if(sp.label=="ROOK")
+        {
+            int number = this.moveSetQueenx.size() - 1; //Careful!
+            for(int i=number;i>=0;i--)
+            {
+                moveSetQueenx.remove(i);
+                moveSetQueeny.remove(i);
+            }
+
+            return;
+        }
     }
 
     public void displayChoices(Sprite sp)
@@ -329,6 +365,12 @@ public class Sprite implements MouseListener {
         }
 
         else if(sp.label=="BISHOP")
+        {
+            setChoiceVisible = true;
+            return;
+        }
+
+        else if(sp.label=="ROOK")
         {
             setChoiceVisible = true;
             return;
