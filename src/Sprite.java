@@ -409,12 +409,17 @@ public class Sprite implements MouseListener {
 
         else if(c==2)
         {
+            //Diagonal highlighting doesn't work
             int k=0;
             for(int i=0; i<8;i++)
             {
                 for(int j=0; j<8; j++)
                 {
-                    if(this.x!=44*i && this.y!=44*j && (this.x - 44*i == this.y - 44*j))
+                    //System.out.println("i = "+ i + " j = " + j + "\n");
+                    System.out.println("this.x - 44*i = "+ abs(this.x - 44*i) + " j = " + abs(this.y - 44*j) + "\n");
+
+
+                    if(this.x!=44*i && this.y!=44*j && (abs(abs(this.x - 44*i) - abs(this.y - 44*j))<=5))
                     {
                         this.moveSetQueenx.add(k, 44*i);
                         this.moveSetQueeny.add(k++,44*j);

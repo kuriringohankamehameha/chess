@@ -340,7 +340,7 @@ public class Board extends JPanel {
 
         //g.drawImage(queen, xqueen, yqueen, this);
 
-        g.setColor(Color.WHITE);
+        g.setColor(Color.ORANGE);
 
         for(int i=0; i<spriteArrayList.size(); i++)
         {
@@ -349,7 +349,7 @@ public class Board extends JPanel {
             //Draw choices, if any
             if(spriteArrayList.get(i).setChoiceVisible) {
                 for(int j=0;j<spriteArrayList.get(i).moveSetQueenx.size();j++)
-                g.drawRect(spriteArrayList.get(i).moveSetQueenx.get(j), spriteArrayList.get(i).moveSetQueeny.get(j), 44, 44);
+                g.fillRect(spriteArrayList.get(i).moveSetQueenx.get(j), spriteArrayList.get(i).moveSetQueeny.get(j), 44, 44);
             }
         }
 
