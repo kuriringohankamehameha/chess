@@ -18,20 +18,24 @@ public class Knight extends Sprite implements MouseListener {
 
     }
 
-    public Knight(int x, int y, ArrayList<Sprite> al)
+    public Knight(int x, int y, String color, ArrayList<Sprite> al)
     {
         super(x,y);
         super.label = "KNIGHT";
         super.visible = true;
         super.list=al;
-
+        super.color=color;
         initKnight();
 
     }
 
     public void initKnight() {
 
+        if(color=="WHITE")
         loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wknight.png");
+        else
+            loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/bknight.png");
+
         this.image = this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
         super.moveSetQueenx = new ArrayList<>(4);
@@ -69,12 +73,13 @@ public class Knight extends Sprite implements MouseListener {
         {
             //2 steps in horiz and one vertical
 
-            System.out.println(" xc = "+abs(xc) + " yc = "+abs(yc)+"\n");
+            //System.out.println(" xc = "+abs(xc) + " yc = "+abs(yc)+"\n");
             if(abs(this.x - xc)<=50 && abs(this.y - yc)<=110 && abs(this.x - xc)>=40 && abs(this.y - yc)>=66)
             {
-
+                if(!allyCheck(xc,yc)) {
                     moveHorizontally(this.x, xc);
                     moveVertically(this.y, yc);
+                }
                     resolveConflicts(this.x, this.y);
                     choice = 0;
                     this.setChoiceVisible = false; //Doubt
@@ -84,8 +89,10 @@ public class Knight extends Sprite implements MouseListener {
 
             if(abs(this.x - xc)<=110 && abs(this.y - yc)<=65 && abs(this.x - xc)>=66 && abs(this.y - yc)>=22)
             {
-                    moveHorizontally(this.x,xc);
+                if(!allyCheck(xc,yc)) {
+                    moveHorizontally(this.x, xc);
                     moveVertically(this.y, yc);
+                }
                     resolveConflicts(this.x, this.y);
                     choice = 0;
                     this.setChoiceVisible = false; //Doubt

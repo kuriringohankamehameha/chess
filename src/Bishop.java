@@ -19,20 +19,24 @@ public class Bishop extends Sprite implements MouseListener {
         initBishop();
     }
 
-    public Bishop(int x, int y, ArrayList<Sprite> al)
+    public Bishop(int x, int y, String color, ArrayList<Sprite> al)
     {
         super(x,y);
         super.label = "BISHOP";
         super.visible = true;
         super.list=al;
-
+        super.color=color;
         initBishop();
 
     }
 
     private void initBishop() {
 
+        if(color=="WHITE")
         loadImage("src/images/wbishop.png");
+        else
+            loadImage("src/images/bbishop.png");
+
         this.image=this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 
         getImageDimensions();
@@ -91,6 +95,7 @@ public class Bishop extends Sprite implements MouseListener {
         {
             if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
             {
+                if(!allyCheck(xc,yc) && diagonalClear(this.x,this.y,xc,yc))
                 moveDiagonally(this.x, this.y, xc, yc);
                 resolveConflicts(this.x,this.y);
                 choice=0;

@@ -22,12 +22,13 @@ public class Queen extends Sprite implements MouseListener {
         initQueen();
     }
 
-    public Queen(int x, int y, ArrayList<Sprite> al)
+    public Queen(int x, int y, String color, ArrayList<Sprite> al)
     {
         super(x,y);
         super.label = "QUEEN";
         super.visible = true;
         super.list = al;
+        super.color=color;
 
 
         initQueen();
@@ -35,7 +36,11 @@ public class Queen extends Sprite implements MouseListener {
 
     public void initQueen()
     {
+        if(color=="WHITE")
         loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wqueen.png");
+        else
+            loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/bqueen.png");
+
         this.image=this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
         super.moveSetQueenx = new ArrayList<>(28);

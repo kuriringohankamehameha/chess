@@ -106,23 +106,23 @@ public class Board extends JPanel {
 
         for(int i=0; i<8; i++)
         {
-            pawnArray[i] = new Pawn((44*i + xoffset),ypawns,spriteArrayList);
+            pawnArray[i] = new Pawn((44*i + xoffset),ypawns,"WHITE",spriteArrayList);
             spriteArrayList.add(pawnArray[i]);
         }
 
         int yrooks = 7*44;
 
-        rookArray[0] = new Rook(xoffset,yrooks,spriteArrayList);
-        rookArray[1] = new Rook((40 + 6*44),yrooks, spriteArrayList);
+        rookArray[0] = new Rook(xoffset,yrooks,"WHITE",spriteArrayList);
+        rookArray[1] = new Rook((40 + 6*44),yrooks, "WHITE",spriteArrayList);
 
         int yknights = yrooks;
 
-        knightArray[0] = new Knight(xoffset + 44,yknights,spriteArrayList);
-        knightArray[1] = new Knight((40 + 5*44),yknights, spriteArrayList);
+        knightArray[0] = new Knight(xoffset + 44,yknights,"WHITE",spriteArrayList);
+        knightArray[1] = new Knight((40 + 5*44),yknights,"WHITE", spriteArrayList);
 
         int ybishops = yrooks;
-        bishopArray[0] = new Bishop(xoffset + 2*44,yknights,spriteArrayList);
-        bishopArray[1] = new Bishop((40 + 4*44),yknights, spriteArrayList);
+        bishopArray[0] = new Bishop(xoffset + 2*44,yknights,"WHITE",spriteArrayList);
+        bishopArray[1] = new Bishop((40 + 4*44),yknights,"WHITE", spriteArrayList);
 
         for(int i=0; i<2; i++) {
             spriteArrayList.add(rookArray[i]);
@@ -131,10 +131,10 @@ public class Board extends JPanel {
         }
 
         //Add White King (on black square)
-        spriteArrayList.add(new King(xoffset + 4*44,yrooks,spriteArrayList));
+        spriteArrayList.add(new King(xoffset + 4*44,yrooks,"WHITE",spriteArrayList));
 
         //Add White Queen
-        spriteArrayList.add(new Queen(xoffset + 3*44,yrooks,spriteArrayList));
+        spriteArrayList.add(new Queen(xoffset + 3*44,yrooks,"WHITE",spriteArrayList));
 
 
     }
@@ -147,28 +147,28 @@ public class Board extends JPanel {
         System.out.println("Board width = "+ bg.getWidth(null) + " ht = " + bg.getHeight(null));
 
         //Add queen
-        q=new Queen(xqueen,yqueen - 352/2,spriteArrayList);
+        q=new Queen(xqueen,yqueen - 352/2,"WHITE",spriteArrayList);
         spriteArrayList.add(q);
 
 
-        //Add bishop
-        bishop_object = new Bishop(xbishop, ybishop - 352/2,spriteArrayList);
+        //Add BLACK bishop
+        bishop_object = new Bishop(xbishop, ybishop - 352/2,"BLACK",spriteArrayList);
         spriteArrayList.add(bishop_object);
 
         //Add the King object to the SpriteList/spriteArrayList.add(new Sprite(k));
-        k = new King(xking, yking,spriteArrayList);
+        k = new King(xking, yking,"WHITE",spriteArrayList);
         spriteArrayList.add(k);
 
         //Add rook
-        r = new Rook(xrook, yrook,spriteArrayList);
+        r = new Rook(xrook, yrook,"WHITE",spriteArrayList);
         spriteArrayList.add(r);
 
         //Add Knight
-        n = new Knight(xknight, yknight, spriteArrayList);
+        n = new Knight(xknight, yknight, "WHITE",spriteArrayList);
         spriteArrayList.add(n);
 
         //Add Pawn
-        p = new Pawn(xpawn, ypawn, spriteArrayList);
+        p = new Pawn(xpawn, ypawn, "WHITE",spriteArrayList);
         spriteArrayList.add(p);
 
         setupWhitePieces();
@@ -338,7 +338,7 @@ public class Board extends JPanel {
         if(promotion==1)
         {
             //System.out.println("Promotion "+promotion_x+ " , "+ promotion_y+ "\n");
-            Queen qe = new Queen(promotion_x,promotion_y,spriteArrayList);
+            Queen qe = new Queen(promotion_x,promotion_y,"WHITE",spriteArrayList);
             spriteArrayList.add(qe);
             //System.out.println("New queen added at position "+qe.x+", "+qe.y+"\n");
             //System.out.println(spriteArrayList.get(spriteArrayList.size()-1).label);

@@ -15,6 +15,7 @@ public class Sprite implements MouseListener {
     protected boolean visible;
     protected Image image;
     public String label;
+    public String color;
     public boolean setChoiceVisible = false;
 
     //List
@@ -194,28 +195,23 @@ public class Sprite implements MouseListener {
 
             //Choice is made and you can move
             if((this.y <= yc+22 && this.y >=yc-22 )&& !(this.x <= xc+22 & this.x >= xc-22)) {
+                if(!allyCheck(xc,yc)&& horizontalClear(x,y,xc,yc))
                 moveHorizontally(this.x, xc);
                 return ;
             }
 
             if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
+                if(!allyCheck(xc,yc)&& verticalClear(x,y,xc,yc))
                 moveVertically(this.y, yc);
                 return ;
             }
 
             if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
             {
+                if(!allyCheck(xc,yc)&& diagonalClear(x,y,xc,yc))
                 moveDiagonally(this.x, this.y, xc, yc);
                 return ;
             }
-
-            /**
-             * TODO: Highlight available squares based on decision value on the board (??)
-             */
-
-
-
-
     }
 
     public boolean isPiece(int x, int y)
@@ -341,7 +337,7 @@ public class Sprite implements MouseListener {
             return;
         }
 
-        if(sp.label=="ROOK" || sp.label=="KNIGHT")
+        if(sp.label=="ROOK" || sp.label=="KNIGHT" || sp.label=="PAWN")
         {
             int number = this.moveSetQueenx.size() - 1; //Careful!
             for(int i=number;i>=0;i--)
@@ -395,6 +391,235 @@ public class Sprite implements MouseListener {
 
 
     }
+
+    public boolean allyCheck(int x, int y) {
+        //Checks if piece at (x,y) is an ally
+        for (int i = 0; i < this.list.size(); i++) {
+            if ((this.list.get(i).visible == true) && abs(this.list.get(i).x - x)<=10 && abs(this.list.get(i).y - y)<=10) {
+                if (this.list.get(i).color == this.color) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean enemyCheck(int x, int y) {
+        //Checks if piece at (x,y) is an ally
+        for (int i = 0; i < this.list.size(); i++) {
+            if ((this.list.get(i).visible == true) && abs(this.list.get(i).x - x)<=10 && abs(this.list.get(i).y - y)<=10) {
+                if (this.list.get(i).color != this.color) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean horizontalClear(int xfrom, int yfrom, int xto, int yto) {
+        //Checks if piece at (x,y) is an ally
+        int inc=44;
+        if(xto<xfrom) {
+            inc = -44;
+            for (int i = xfrom+inc; i >= xto; i += inc) {
+                if (allyCheck(i, yfrom))
+                    return false;
+            }
+        }
+        else {
+            for (int i = xfrom+inc; i <= xto; i += inc) {
+                if (allyCheck(i, yfrom))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean verticalClear(int xfrom, int yfrom, int xto, int yto) {
+        //Checks if piece at (x,y) is an ally
+        int inc=44;
+        if(yto<yfrom) {
+            inc = -44;
+            for (int i = yfrom+inc; i >= yto; i += inc) {
+                if (allyCheck(xfrom, i))
+                    return false;
+            }
+        }
+        else {
+            for (int i = yfrom+inc; i <= yto; i += inc) {
+                if (allyCheck(xfrom, i))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean diagonalClear(int xfrom, int yfrom, int xto, int yto) {
+
+        int xinc = 44;
+        int yinc = 44;
+        if(yto<yfrom)
+            yinc = -44;
+        if(xto<xfrom)
+            xinc = -44;
+
+        int j=yfrom+yinc;
+        if(xinc == yinc && xinc == 44) {
+            for (int i = xfrom + xinc; i <= xto && j <= yto; i += xinc) {
+                if (allyCheck(i, j))
+                    return false;
+                j += yinc;
+            }
+        }
+
+        else if(xinc==44 && yinc ==-44)
+        {
+            for (int i = xfrom + xinc; i <= xto && j >= yto; i += xinc) {
+                if (allyCheck(i, j))
+                    return false;
+                j += yinc;
+            }
+        }
+
+        else if(xinc==-44 && yinc==-44) {
+            for (int i = xfrom + xinc; i >= xto && j >= yto; i += xinc) {
+                if (allyCheck(i, j))
+                    return false;
+                j += yinc;
+            }
+        }
+
+        else if(xinc==-44 && yinc==44) {
+            for (int i = xfrom + xinc; i >= xto && j <= yto; i += xinc) {
+                if (allyCheck(i, j))
+                    return false;
+                j += yinc;
+            }
+        }
+
+        return true;
+    }
+
+    public int enemydiagonalCount(int xfrom, int yfrom, int xto, int yto) {
+
+        int xinc = 44;
+        int yinc = 44;
+        if(yto<yfrom)
+            yinc = -44;
+        if(xto<xfrom)
+            xinc = -44;
+
+        int tc = 0;
+
+        int j=yfrom+yinc;
+        if(xinc == yinc && xinc == 44) {
+            for (int i = xfrom + xinc; i <= xto && j <= yto; i += xinc) {
+                if (enemyCheck(i, j))
+                {
+                    tc++;
+                }
+                j += yinc;
+            }
+        }
+
+        else if(xinc==44 && yinc ==-44)
+        {
+            for (int i = xfrom + xinc; i <= xto && j >= yto; i += xinc) {
+                if (enemyCheck(i, j))
+                    tc++;
+                j += yinc;
+            }
+        }
+
+        else if(xinc==-44 && yinc==-44) {
+            for (int i = xfrom + xinc; i >= xto && j >= yto; i += xinc) {
+                if (enemyCheck(i, j))
+                tc++;
+                j += yinc;
+            }
+        }
+
+        else if(xinc==-44 && yinc==44) {
+            for (int i = xfrom + xinc; i >= xto && j <= yto; i += xinc) {
+                if (allyCheck(i, j))
+                    tc++;
+                j += yinc;
+            }
+        }
+
+        return tc;
+    }
+
+    public ArrayList<Integer> enemydiagonalCoordinates(int xfrom, int yfrom, int xto, int yto) {
+
+        int xinc = 44;
+        int yinc = 44;
+        if(yto<yfrom)
+            yinc = -44;
+        if(xto<xfrom)
+            xinc = -44;
+
+        int tc=0;
+        ArrayList<Integer> list = new ArrayList<>(2);
+
+        int j=yfrom+yinc;
+        if(xinc == yinc && xinc == 44) {
+            for (int i = xfrom + xinc; i <= xto && j <= yto; i += xinc) {
+                if (enemyCheck(i, j))
+                {
+                    if(tc!=0)
+                        break;
+                    tc++;
+                    list.add(i);
+                    list.add(j);
+                }
+                j += yinc;
+            }
+        }
+
+        else if(xinc==44 && yinc ==-44)
+        {
+            for (int i = xfrom + xinc; i <= xto && j >= yto; i += xinc) {
+                if (enemyCheck(i, j)) {
+                    if(tc!=0)
+                        break;
+                    tc++;
+                    list.add(i);
+                    list.add(j);
+                }
+                j += yinc;
+            }
+        }
+
+        else if(xinc==-44 && yinc==-44) {
+            for (int i = xfrom + xinc; i >= xto && j >= yto; i += xinc) {
+                if (enemyCheck(i, j)) {
+                    if(tc!=0)
+                        break;
+                    tc++;
+                    list.add(i);
+                    list.add(j);
+                }
+                j += yinc;
+            }
+        }
+
+        else if(xinc==-44 && yinc==44) {
+            for (int i = xfrom + xinc; i >= xto && j <= yto; i += xinc) {
+                if (enemyCheck(i, j)) {
+                    if(tc!=0)
+                        break;
+                    tc++;
+                    list.add(i);
+                    list.add(j);
+                }
+                j += yinc;
+            }
+        }
+
+        return list;
+    }
+
 
 }
 

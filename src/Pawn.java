@@ -18,12 +18,13 @@ public class Pawn extends Sprite implements MouseListener {
 
     }
 
-    public Pawn(int x, int y, ArrayList<Sprite> al)
+    public Pawn(int x, int y, String color,ArrayList<Sprite> al)
     {
         super(x,y);
         super.label = "PAWN";
         super.visible = true;
         super.list=al;
+        super.color = color;
 
         initPawn();
 
@@ -31,7 +32,11 @@ public class Pawn extends Sprite implements MouseListener {
 
     public void initPawn() {
 
+        if(color=="WHITE")
         loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wpawn.png");
+        else
+            loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/bpawn.png");
+
         this.image = this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
         super.moveSetQueenx = new ArrayList<>(3);
@@ -69,34 +74,15 @@ public class Pawn extends Sprite implements MouseListener {
         {
             if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
                 if((this.y - yc)>=50) {
-                    moveVertically(this.y, yc);
+                    if(!allyCheck(xc,yc)) {
+                        moveVertically(this.y, yc);
+                    }
                 }
                 choice = 0;
                 this.setChoiceVisible = false; //Doubt
                 removeSet(this);
                 //If pawn goes to y=0, it becomes Queen
-                if(this.y<=5)
-                {
-                    int i=0;
-                    int xcoord = this.x;
-                    int ycoord = this.y;
-                    for(Sprite sprite:this.list) {
-                        if(this==sprite) {
-                            this.list.get(i).visible = false;
-                            //Queen q = new Queen(xcoord,ycoord,this.list);
-                            //super.list.add(q);
-                            //this.list.remove(sprite);
-                            //I cannot add this to a list which won't be used
-                            Board.promotion=1;
-                            Board.promotion_x=xcoord;
-                            Board.promotion_y=ycoord;
-                            this.list.remove(sprite);
-                            return;
-                        }
-                        i++;
-                    }
-
-                }
+                getPromoted();
                 return ;
             }
 
@@ -106,20 +92,24 @@ public class Pawn extends Sprite implements MouseListener {
                 Boolean b = isPiece(this.x-44,this.y-44);
                 if((this.y>yc)&&(a || b)){
                    if(a && this.x+40<=xc && this.x+52>=xc) {
-                       moveDiagonally(this.x, this.y, xc, yc);
+                       if(!allyCheck(xc,yc))
+                           moveDiagonally(this.x, this.y, xc, yc);
                        resolveConflicts(this.x, this.y);
                        choice = 0;
                        this.setChoiceVisible = false; //Doubt
                        removeSet(this);
+                       getPromoted();
                        return;
                    }
 
                     if(b && xc+40<=this.x && xc+52>=this.x) {
-                        moveDiagonally(this.x, this.y, xc, yc);
+                        if(!allyCheck(xc,yc))
+                            moveDiagonally(this.x, this.y, xc, yc);
                         resolveConflicts(this.x, this.y);
                         choice = 0;
                         this.setChoiceVisible = false; //Doubt
                         removeSet(this);
+                        getPromoted();
                         return;
                     }
 
@@ -160,5 +150,31 @@ public class Pawn extends Sprite implements MouseListener {
         }
 
 
+    }
+
+    void getPromoted()
+    {
+        if(this.y<=5)
+        {
+            int i=0;
+            int xcoord = this.x;
+            int ycoord = this.y;
+            for(Sprite sprite:this.list) {
+                if(this==sprite) {
+                    this.list.get(i).visible = false;
+                    //Queen q = new Queen(xcoord,ycoord,this.list);
+                    //super.list.add(q);
+                    //this.list.remove(sprite);
+                    //I cannot add this to a list which won't be used
+                    Board.promotion=1;
+                    Board.promotion_x=xcoord;
+                    Board.promotion_y=ycoord;
+                    this.list.remove(sprite);
+                    return;
+                }
+                i++;
+            }
+
+        }
     }
 }

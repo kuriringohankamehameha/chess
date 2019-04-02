@@ -18,13 +18,13 @@ public class Rook extends Sprite implements MouseListener {
         initRook();
 
     }
-    public Rook(int x, int y, ArrayList<Sprite> al)
+    public Rook(int x, int y, String color, ArrayList<Sprite> al)
     {
         super(x,y);
         super.label = "ROOK";
         super.visible = true;
         super.list=al;
-
+        super.color=color;
         initRook();
 
     }
@@ -32,7 +32,10 @@ public class Rook extends Sprite implements MouseListener {
 
     public void initRook() {
 
+        if(color=="WHITE")
         loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wrook.png");
+        else
+            loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wrook.png");
         this.image = this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
         super.moveSetQueenx = new ArrayList<>(28);
@@ -72,7 +75,8 @@ public class Rook extends Sprite implements MouseListener {
         if(choice == 1)
         {
             if((this.y <= yc+22 && this.y >=yc-22 )&& !(this.x <= xc+22 & this.x >= xc-22)) {
-                moveHorizontally(this.x, xc);
+                if(!allyCheck(xc,yc) && horizontalClear(x,y,xc,yc))
+                    moveHorizontally(this.x, xc);
                 resolveConflicts(this.x,this.y);
                 choice = 0;
                 this.setChoiceVisible = false;
@@ -81,7 +85,8 @@ public class Rook extends Sprite implements MouseListener {
             }
 
             if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
-                moveVertically(this.y, yc);
+                if(!allyCheck(xc,yc) && verticalClear(x,y,xc,yc))
+                    moveVertically(this.y, yc);
                 resolveConflicts(this.x,this.y);
                 choice = 0;
                 this.setChoiceVisible = false;

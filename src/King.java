@@ -25,12 +25,13 @@ public class King extends Sprite implements MouseListener{
 
     }
 
-    public King(int x, int y, ArrayList<Sprite> al)
+    public King(int x, int y, String color, ArrayList<Sprite> al)
     {
         super(x,y);
         super.label = "KING";
         super.visible = true;
         super.list=al;
+        super.color=color;
 
         initKing();
 
@@ -38,7 +39,11 @@ public class King extends Sprite implements MouseListener{
 
     public void initKing() {
 
-       loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wking.png");
+        if(color=="WHITE")
+        loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wking.png");
+        else
+            loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/bking.png");
+
         this.image = this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
         super.moveSetQueenx = new ArrayList<>(28);
@@ -77,6 +82,7 @@ public class King extends Sprite implements MouseListener{
             if((this.y <= yc + 22 && this.y >= yc -22) && !(this.x <= xc + 22 && this.x >= xc -22))
             {
                 if(abs(this.x - xc)<=50) {
+                    if(!allyCheck(xc,yc))
                     moveHorizontally(this.x, xc);
                     resolveConflicts(this.x, this.y);
                 }
@@ -88,7 +94,8 @@ public class King extends Sprite implements MouseListener{
 
             if((abs(this.x - xc)<=22 && !(abs(this.y - yc)<=22))) {
                 if(abs(this.y - yc)<=60) {
-                    moveVertically(this.y, yc);
+                    if(!allyCheck(xc,yc))
+                        moveVertically(this.y, yc);
                     resolveConflicts(this.x, this.y);
                 }
                 choice = 0;
@@ -100,7 +107,8 @@ public class King extends Sprite implements MouseListener{
             if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
             {
                 if(abs(this.x - xc)<=50 && abs(this.y - yc)<=50) {
-                    moveDiagonally(this.x, this.y, xc, yc);
+                    if(!allyCheck(xc,yc))
+                        moveDiagonally(this.x, this.y, xc, yc);
                     resolveConflicts(this.x, this.y);
                 }
                     choice = 0;
