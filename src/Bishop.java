@@ -102,6 +102,7 @@ public class Bishop extends Sprite implements MouseListener {
                         ArrayList<Integer> nearestenemy = enemydiagonalCoordinates(this.x,this.y,xc,yc);
                         if(abs(xc-nearestenemy.get(0))<=10 && abs(yc-nearestenemy.get(1))<=10)
                             moveDiagonally(this.x, this.y, xc, yc);
+                        nearestenemy.clear();
                     }
                     else if(enemydiagonalClear(this.x,this.y,xc,yc))
                     moveDiagonally(this.x, this.y, xc, yc);

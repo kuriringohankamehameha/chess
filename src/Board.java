@@ -146,8 +146,8 @@ public class Board extends JPanel {
 
         System.out.println("Board width = "+ bg.getWidth(null) + " ht = " + bg.getHeight(null));
 
-        //Add queen
-        q=new Queen(xqueen,yqueen - 352/2,"WHITE",spriteArrayList);
+        //Add BLACK queen
+        q=new Queen(xqueen,yqueen - 352/2,"BLACK",spriteArrayList);
         spriteArrayList.add(q);
 
 
