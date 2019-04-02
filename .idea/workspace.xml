@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8116d17b-e342-4814-ae72-01042b79ceed" name="Default Changelist" comment="Added Rook">
-      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pawn.java" afterDir="false" />
-    </list>
+    <list default="true" id="8116d17b-e342-4814-ae72-01042b79ceed" name="Default Changelist" comment="Added Rook" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,8 +86,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Board.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="190">
-                  <caret line="343" column="40" selection-start-line="343" selection-start-column="40" selection-end-line="343" selection-end-column="40" />
+                <state relative-caret-position="271">
+                  <caret line="347" column="46" selection-start-line="347" selection-start-column="46" selection-end-line="348" selection-end-column="40" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#1834#1835#0" expanded="true" />
@@ -298,7 +295,7 @@
       <workItem from="1554065580159" duration="3274000" />
       <workItem from="1554143667101" duration="10307000" />
       <workItem from="1554198463680" duration="2523000" />
-      <workItem from="1554205183570" duration="17082000" />
+      <workItem from="1554205183570" duration="17293000" />
     </task>
     <task id="LOCAL-00001" summary="Added Rook">
       <created>1554053959766</created>
@@ -311,7 +308,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103868000" />
+    <option name="totallyTimeSpent" value="104079000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -335,7 +332,7 @@
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49928367" weight="0.32850242" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5007163" side_tool="true" weight="0.32850242" />
-      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.32729468" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.32729468" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -538,8 +535,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="343" column="40" selection-start-line="343" selection-start-column="40" selection-end-line="343" selection-end-column="40" />
+        <state relative-caret-position="271">
+          <caret line="347" column="46" selection-start-line="347" selection-start-column="46" selection-end-line="348" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1834#1835#0" expanded="true" />
