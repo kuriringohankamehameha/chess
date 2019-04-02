@@ -69,7 +69,7 @@ public class Knight extends Sprite implements MouseListener {
         {
             //2 steps in horiz and one vertical
 
-            //System.out.println("this.x - xc = "+abs(this.x-xc) + " this.y - yc = "+abs(this.y-yc)+"\n");
+            System.out.println(" xc = "+abs(xc) + " yc = "+abs(yc)+"\n");
             if(abs(this.x - xc)<=50 && abs(this.y - yc)<=110 && abs(this.x - xc)>=40 && abs(this.y - yc)>=66)
             {
 
@@ -103,19 +103,19 @@ public class Knight extends Sprite implements MouseListener {
 
     public void addtoSet(Sprite sp, int c)
     {
-        if(x+88 <= 352 && y+44 <= 352) {
+        if(x+88 <= 342 && y+44 <= 342) {
             this.moveSetQueenx.add(x + 88);
             this.moveSetQueeny.add(this.y + 44);
         }
 
 
-        if(x-88>=5 && y+44<=352) {
+        if(x-88>=5 && y+44<=342) {
             this.moveSetQueenx.add(x - 88);
             this.moveSetQueeny.add(this.y + 44);
         }
 
         if(y-44>=5) {
-            if(x+88<=352) {
+            if(x+88<=342) {
                 this.moveSetQueenx.add(x + 88);
                 this.moveSetQueeny.add(y - 44);
             }
@@ -125,8 +125,8 @@ public class Knight extends Sprite implements MouseListener {
             }
         }
 
-        if(y+88<=352) {
-            if(x+44<=352) {
+        if(y+88<=342) {
+            if(x+44<=342) {
                 this.moveSetQueenx.add(x + 44);
                 this.moveSetQueeny.add(y + 88);
             }
@@ -141,7 +141,7 @@ public class Knight extends Sprite implements MouseListener {
                 this.moveSetQueenx.add(x - 44);
                 this.moveSetQueeny.add(y - 88);
             }
-            if(x+44<=352) {
+            if(x+44<=342) {
                 this.moveSetQueenx.add(x + 44);
                 this.moveSetQueeny.add(y - 88);
             }
