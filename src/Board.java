@@ -64,10 +64,66 @@ public class Board extends JPanel {
     public Knight n;
     public Pawn p;
 
+    public Pawn[] pawnArray;
+    public Rook[] rookArray;
+    public Knight[] knightArray;
+    public Bishop[] bishopArray;
+
+
     public static ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
 
     int alpha = 127/2; // 75% transparent
     Color myColour = new Color(155, 150, 150, alpha);
+
+    public void setupWhitePieces()
+    {
+        //Sets up white pieces
+        int xoffset = -4;
+        int xcoord=xoffset;
+        int ycoord=0;
+
+        pawnArray = new Pawn[8];
+        knightArray = new Knight[2];
+        rookArray = new Rook[2];
+        bishopArray = new Bishop[2];
+
+        int xpawn = xcoord;
+        int ypawns = 6*44;
+
+        for(int i=0; i<8; i++)
+        {
+            pawnArray[i] = new Pawn((44*i + xoffset),ypawns,spriteArrayList);
+            spriteArrayList.add(pawnArray[i]);
+        }
+
+        int yrooks = 7*44;
+
+        rookArray[0] = new Rook(xoffset,yrooks,spriteArrayList);
+        rookArray[1] = new Rook((40 + 6*44),yrooks, spriteArrayList);
+
+        int yknights = yrooks;
+
+        knightArray[0] = new Knight(xoffset + 44,yknights,spriteArrayList);
+        knightArray[1] = new Knight((40 + 5*44),yknights, spriteArrayList);
+
+        int ybishops = yrooks;
+        bishopArray[0] = new Bishop(xoffset + 2*44,yknights,spriteArrayList);
+        bishopArray[1] = new Bishop((40 + 4*44),yknights, spriteArrayList);
+
+        for(int i=0; i<2; i++) {
+            spriteArrayList.add(rookArray[i]);
+            spriteArrayList.add(knightArray[i]);
+            spriteArrayList.add(bishopArray[i]);
+        }
+
+        //Add White King (on black square)
+        spriteArrayList.add(new King(xoffset + 4*44,yrooks,spriteArrayList));
+
+        //Add White Queen
+        spriteArrayList.add(new Queen(xoffset + 3*44,yrooks,spriteArrayList));
+
+
+    }
 
     public Board() throws Exception
     {
@@ -101,7 +157,7 @@ public class Board extends JPanel {
         p = new Pawn(xpawn, ypawn, spriteArrayList);
         spriteArrayList.add(p);
 
-
+        setupWhitePieces();
 
         ActionListener al = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {

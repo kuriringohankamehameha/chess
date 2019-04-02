@@ -74,6 +74,24 @@ public class Pawn extends Sprite implements MouseListener {
                 choice = 0;
                 this.setChoiceVisible = false; //Doubt
                 removeSet(this);
+                //If pawn goes to y=0, it becomes Queen
+                if(this.y<=5)
+                {
+                    int i=0;
+                    int xcoord = this.x;
+                    int ycoord = this.y;
+                    for(Sprite sprite:this.list) {
+                        if(this==sprite) {
+                            this.list.get(i).visible = false;
+                            Queen q = new Queen(xcoord,ycoord,this.list);
+                            this.list.add(q);
+                            this.list.remove(sprite);
+                            return;
+                        }
+                        i++;
+                    }
+
+                }
                 return ;
             }
 
