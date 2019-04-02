@@ -76,7 +76,18 @@ public class Rook extends Sprite implements MouseListener {
         {
             if((this.y <= yc+22 && this.y >=yc-22 )&& !(this.x <= xc+22 & this.x >= xc-22)) {
                 if(!allyCheck(xc,yc) && horizontalClear(x,y,xc,yc))
-                    moveHorizontally(this.x, xc);
+                {
+                    if(enemyhorizontalCount(this.x, this.y, xc, yc)>=1)
+                    {
+                        ArrayList<Integer> nearestenemy = enemyhorizontalCoordinates(this.x, this.y, xc, yc);
+                        if (abs(xc - nearestenemy.get(0)) <= 10 && abs(yc - nearestenemy.get(1)) <= 10)
+                            moveHorizontally(this.x,xc);
+                        nearestenemy.clear();
+                    }
+                    else if(enemyhoriontalClear(this.x, this.y, xc, yc))
+                        moveHorizontally(this.x, xc);
+                }
+                   // moveHorizontally(this.x, xc);
                 resolveConflicts(this.x,this.y);
                 choice = 0;
                 this.setChoiceVisible = false;
@@ -86,7 +97,18 @@ public class Rook extends Sprite implements MouseListener {
 
             if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
                 if(!allyCheck(xc,yc) && verticalClear(x,y,xc,yc))
-                    moveVertically(this.y, yc);
+                {
+                    if(enemyverticalCount(this.x, this.y, xc, yc)>=1)
+                    {
+                        ArrayList<Integer> nearestenemy = enemyverticalCoordinates(this.x, this.y, xc, yc);
+                        if (abs(xc - nearestenemy.get(0)) <= 10 && abs(yc - nearestenemy.get(1)) <= 10)
+                            moveVertically(this.y,yc);
+                        nearestenemy.clear();
+                    }
+                    else if(enemyverticalClear(this.x, this.y, xc, yc))
+                        moveVertically(this.y, yc);
+                }
+                    //moveVertically(this.y, yc);
                 resolveConflicts(this.x,this.y);
                 choice = 0;
                 this.setChoiceVisible = false;

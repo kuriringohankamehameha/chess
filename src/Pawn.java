@@ -74,7 +74,7 @@ public class Pawn extends Sprite implements MouseListener {
         {
             if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
                 if((this.y - yc)>=50) {
-                    if(!allyCheck(xc,yc) && verticalClear(x,y,xc,yc)) {
+                    if(!allyCheck(xc,yc) && verticalClear(x,y,xc,yc) && enemyverticalClear(x,y,xc,yc)) {
                         moveVertically(this.y, yc);
                     }
                 }
