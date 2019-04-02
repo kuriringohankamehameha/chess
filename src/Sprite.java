@@ -500,6 +500,52 @@ public class Sprite implements MouseListener {
         return true;
     }
 
+    public boolean enemydiagonalClear(int xfrom, int yfrom, int xto, int yto) {
+
+        int xinc = 44;
+        int yinc = 44;
+        if(yto<yfrom)
+            yinc = -44;
+        if(xto<xfrom)
+            xinc = -44;
+
+        int j=yfrom+yinc;
+        if(xinc == yinc && xinc == 44) {
+            for (int i = xfrom + xinc; i <= xto && j <= yto; i += xinc) {
+                if (enemyCheck(i, j))
+                    return false;
+                j += yinc;
+            }
+        }
+
+        else if(xinc==44 && yinc ==-44)
+        {
+            for (int i = xfrom + xinc; i <= xto && j >= yto; i += xinc) {
+                if (enemyCheck(i, j))
+                    return false;
+                j += yinc;
+            }
+        }
+
+        else if(xinc==-44 && yinc==-44) {
+            for (int i = xfrom + xinc; i >= xto && j >= yto; i += xinc) {
+                if (enemyCheck(i, j))
+                    return false;
+                j += yinc;
+            }
+        }
+
+        else if(xinc==-44 && yinc==44) {
+            for (int i = xfrom + xinc; i >= xto && j <= yto; i += xinc) {
+                if (enemyCheck(i, j))
+                    return false;
+                j += yinc;
+            }
+        }
+
+        return true;
+    }
+
     public int enemydiagonalCount(int xfrom, int yfrom, int xto, int yto) {
 
         int xinc = 44;

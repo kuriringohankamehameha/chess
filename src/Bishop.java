@@ -95,8 +95,17 @@ public class Bishop extends Sprite implements MouseListener {
         {
             if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
             {
-                if(!allyCheck(xc,yc) && diagonalClear(this.x,this.y,xc,yc))
-                moveDiagonally(this.x, this.y, xc, yc);
+                if(!allyCheck(xc,yc) && diagonalClear(this.x,this.y,xc,yc)) {
+                    if(enemydiagonalCount(this.x,this.y,xc,yc)>1)
+                    {
+                        //Movement allowed only till nearest enemy
+                        ArrayList<Integer> nearestenemy = enemydiagonalCoordinates(this.x,this.y,xc,yc);
+                        if(abs(xc-nearestenemy.get(0))<=10 && abs(yc-nearestenemy.get(1))<=10)
+                            moveDiagonally(this.x, this.y, xc, yc);
+                    }
+                    else if(enemydiagonalClear(this.x,this.y,xc,yc))
+                    moveDiagonally(this.x, this.y, xc, yc);
+                }
                 resolveConflicts(this.x,this.y);
                 choice=0;
 
