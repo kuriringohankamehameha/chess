@@ -34,6 +34,8 @@ public class Knight extends Sprite implements MouseListener {
         loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wknight.png");
         this.image = this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
+        super.moveSetQueenx = new ArrayList<>(4);
+        super.moveSetQueeny = new ArrayList<>(4);
 
     }
 
@@ -51,11 +53,14 @@ public class Knight extends Sprite implements MouseListener {
         xc+= xoffset;
         yc+= yoffset;
 
+        addtoSet(this,0);
+
         if(choice==0)
         {
             if(abs(this.x - xc)<=11 && abs(this.y - yc)<=11) {
                 moveDiagonally(this.x, this.y, xc, yc);
                 choice = 1;
+                displayChoices(this);
                 return;
             }
         }
@@ -71,6 +76,8 @@ public class Knight extends Sprite implements MouseListener {
                     moveVertically(this.y, yc);
                     resolveConflicts(this.x, this.y);
                 choice = 0;
+                this.setChoiceVisible = false; //Doubt
+                removeSet(this);
                 return ;
             }
 
@@ -80,12 +87,63 @@ public class Knight extends Sprite implements MouseListener {
                     moveVertically(this.y, yc);
                     resolveConflicts(this.x, this.y);
                     choice = 0;
+                this.setChoiceVisible = false; //Doubt
+                removeSet(this);
                     return ;
             }
 
             choice = 0;
+            this.setChoiceVisible = false; //Doubt
+            removeSet(this);
             return;
 
+        }
+    }
+
+    public void addtoSet(Sprite sp, int c)
+    {
+        if(x+88 <= 352 && y+44 <= 352) {
+            this.moveSetQueenx.add(x + 88);
+            this.moveSetQueeny.add(this.y + 44);
+        }
+
+
+        if(x-88>=5 && y+44<=352) {
+            this.moveSetQueenx.add(x - 88);
+            this.moveSetQueeny.add(this.y + 44);
+        }
+
+        if(y-44>=5) {
+            if(x+88<=352) {
+                this.moveSetQueenx.add(x + 88);
+                this.moveSetQueeny.add(y - 44);
+            }
+            if(x-88>=5) {
+                this.moveSetQueenx.add(x - 88);
+                this.moveSetQueeny.add(y - 44);
+            }
+        }
+
+        if(y+88<=352) {
+            if(x+44<=352) {
+                this.moveSetQueenx.add(x + 44);
+                this.moveSetQueeny.add(y + 88);
+            }
+            if(x-44>=5) {
+                this.moveSetQueenx.add(x - 44);
+                this.moveSetQueeny.add(y + 88);
+            }
+        }
+
+        if(y-88>=5) {
+            if(x-44>=5) {
+                this.moveSetQueenx.add(x - 44);
+                this.moveSetQueeny.add(y - 88);
+            }
+            if(x+44<=352) {
+                this.moveSetQueenx.add(x + 44);
+                this.moveSetQueeny.add(y - 88);
+            }
         }
     }
 

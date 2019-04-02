@@ -34,6 +34,8 @@ public class Pawn extends Sprite implements MouseListener {
         loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wpawn.png");
         this.image = this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
+        super.moveSetQueenx = new ArrayList<>(3);
+        super.moveSetQueeny = new ArrayList<>(3);
 
     }
 
@@ -51,11 +53,14 @@ public class Pawn extends Sprite implements MouseListener {
         xc+= xoffset;
         yc+= yoffset;
 
+        addtoSet(this,0);
+
         if(choice==0)
         {
             if(abs(this.x - xc)<=11 && abs(this.y - yc)<=11) {
                 moveDiagonally(this.x, this.y, xc, yc);
                 choice = 1;
+                displayChoices(this);
             }
             return;
         }
@@ -67,6 +72,8 @@ public class Pawn extends Sprite implements MouseListener {
                     moveVertically(this.y, yc);
                 }
                 choice = 0;
+                this.setChoiceVisible = false; //Doubt
+                removeSet(this);
                 return ;
             }
 
@@ -79,6 +86,8 @@ public class Pawn extends Sprite implements MouseListener {
                        moveDiagonally(this.x, this.y, xc, yc);
                        resolveConflicts(this.x, this.y);
                        choice = 0;
+                       this.setChoiceVisible = false; //Doubt
+                       removeSet(this);
                        return;
                    }
 
@@ -86,17 +95,47 @@ public class Pawn extends Sprite implements MouseListener {
                         moveDiagonally(this.x, this.y, xc, yc);
                         resolveConflicts(this.x, this.y);
                         choice = 0;
+                        this.setChoiceVisible = false; //Doubt
+                        removeSet(this);
                         return;
                     }
 
                 }
                 choice = 0;
+                this.setChoiceVisible = false; //Doubt
+                removeSet(this);
                 return ;
             }
 
             choice = 0;
+            this.setChoiceVisible = false; //Doubt
+            removeSet(this);
             return;
 
         }
+    }
+
+    public void addtoSet(Sprite sp, int c)
+    {
+        if(y>5)
+        {
+            this.moveSetQueenx.add(x);
+            this.moveSetQueeny.add(y-44);
+        }
+
+        Boolean a = isPiece(this.x+44,this.y-44);
+        Boolean b = isPiece(this.x-44,this.y-44);
+        if(a)
+        {
+            this.moveSetQueenx.add(x+44);
+            this.moveSetQueeny.add(y-44);
+        }
+        if(b)
+        {
+            this.moveSetQueenx.add(x-44);
+            this.moveSetQueeny.add(y-44);
+        }
+
+
     }
 }

@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -42,6 +41,8 @@ public class King extends Sprite implements MouseListener{
        loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wking.png");
         this.image = this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
+        super.moveSetQueenx = new ArrayList<>(28);
+        super.moveSetQueeny = new ArrayList<>(28);
 
     }
 
@@ -59,11 +60,14 @@ public class King extends Sprite implements MouseListener{
         xc+= xoffset;
         yc+= yoffset;
 
+        addtoSet(this,0);
+
         if(choice==0)
         {
             if(abs(this.x - xc)<=11 && abs(this.y - yc)<=11) {
                 moveDiagonally(this.x, this.y, xc, yc);
                 choice = 1;
+                displayChoices(this);
             }
             return;
         }
@@ -77,6 +81,8 @@ public class King extends Sprite implements MouseListener{
                     resolveConflicts(this.x, this.y);
                 }
                 choice = 0;
+                this.setChoiceVisible = false; //Doubt
+                removeSet(this);
                 return ;
             }
 
@@ -86,6 +92,8 @@ public class King extends Sprite implements MouseListener{
                     resolveConflicts(this.x, this.y);
                 }
                 choice = 0;
+                this.setChoiceVisible = false; //Doubt
+                removeSet(this);
                 return ;
             }
 
@@ -96,10 +104,14 @@ public class King extends Sprite implements MouseListener{
                     resolveConflicts(this.x, this.y);
                 }
                     choice = 0;
+                this.setChoiceVisible = false; //Doubt
+                removeSet(this);
                 return ;
             }
 
             choice = 0;
+            this.setChoiceVisible = false; //Doubt
+            removeSet(this);
             return;
 
         }
@@ -122,6 +134,51 @@ public class King extends Sprite implements MouseListener{
 
     public void mouseEntered(MouseEvent e)
     {
+
+    }
+
+
+    public void addtoSet(Sprite sp, int c)
+    {
+        this.moveSetQueenx.add(x+44);
+        this.moveSetQueeny.add(this.y);
+
+        this.moveSetQueenx.add(x-44);
+        this.moveSetQueeny.add(this.y);
+
+        this.moveSetQueenx.add(x);
+        this.moveSetQueeny.add(y+44);
+
+        this.moveSetQueenx.add(x);
+        this.moveSetQueeny.add(y-44);
+
+        this.moveSetQueenx.add(x+44);
+        this.moveSetQueeny.add(this.y+44);
+
+        this.moveSetQueenx.add(x-44);
+        this.moveSetQueeny.add(this.y+44);
+
+        this.moveSetQueenx.add(x+44);
+        this.moveSetQueeny.add(this.y-44);
+
+        this.moveSetQueenx.add(x-44);
+        this.moveSetQueeny.add(this.y-44);
+
+
+    }
+
+
+    public void removeSet(Sprite sp)
+    {
+
+            int number = this.moveSetQueenx.size() - 1; //Careful!
+            for(int i=number;i>=0;i--)
+            {
+                moveSetQueenx.remove(i);
+                moveSetQueeny.remove(i);
+            }
+
+            return;
 
     }
 

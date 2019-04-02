@@ -291,7 +291,7 @@ public class Sprite implements MouseListener {
             }
         }
 
-        if(sp.label == "ROOK") {
+        else if(sp.label == "ROOK") {
             if (c == 0) {
                 for (int i = 0; i < 8; i++) {
                     if (!(abs(this.x - 44 * i) <= 5)) {
@@ -375,6 +375,25 @@ public class Sprite implements MouseListener {
             setChoiceVisible = true;
             return;
         }
+
+        else if(sp.label == "KING")
+        {
+            setChoiceVisible=true;
+            return;
+        }
+
+        else if(sp.label == "PAWN")
+        {
+            setChoiceVisible=true;
+            return;
+        }
+
+        else if(sp.label == "KNIGHT")
+        {
+            setChoiceVisible=true;
+            return;
+        }
+
 
     }
 
