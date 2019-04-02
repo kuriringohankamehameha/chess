@@ -77,6 +77,8 @@ public class Board extends JPanel {
     public static int promotion_x;
     public static int promotion_y;
 
+    public static int pawnturns=0;
+
     int alpha = 127/2; // 75% transparent
     Color myColour = new Color(155, 150, 150, alpha);
 

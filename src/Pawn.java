@@ -104,6 +104,7 @@ public class Pawn extends Sprite implements MouseListener {
                 removeSet(this);
                 //If pawn goes to y=0, it becomes Queen
                 getPromoted();
+                Board.pawnturns++;
                 return ;
             }
 
@@ -114,26 +115,30 @@ public class Pawn extends Sprite implements MouseListener {
                     Boolean b = isPiece(this.x - 44, this.y - 44);
                     if ((this.y > yc) && (a || b)) {
                         if (a && this.x + 40 <= xc && this.x + 52 >= xc) {
-                            if (!allyCheck(xc, yc))
+                            if (enemyCheck(xc, yc)) {
                                 moveDiagonally(this.x, this.y, xc, yc);
-                            twosteps = 0;
+                                twosteps = 0;
+                            }
                             resolveConflicts(this.x, this.y);
                             choice = 0;
                             this.setChoiceVisible = false; //Doubt
                             removeSet(this);
                             getPromoted();
+                            Board.pawnturns++;
                             return;
                         }
 
                         if (b && xc + 40 <= this.x && xc + 52 >= this.x) {
-                            if (!allyCheck(xc, yc))
+                            if (enemyCheck(xc, yc)) {
                                 moveDiagonally(this.x, this.y, xc, yc);
-                            twosteps = 0;
+                                twosteps = 0;
+                            }
                             resolveConflicts(this.x, this.y);
                             choice = 0;
                             this.setChoiceVisible = false; //Doubt
                             removeSet(this);
                             getPromoted();
+                            Board.pawnturns++;
                             return;
                         }
 
@@ -145,26 +150,29 @@ public class Pawn extends Sprite implements MouseListener {
                     Boolean b = isPiece(this.x - 44, this.y + 44);
                     if ((this.y < yc) && (a || b)) {
                         if (a && this.x + 40 <= xc && this.x + 52 >= xc) {
-                            if (!allyCheck(xc, yc))
+                            if (enemyCheck(xc, yc)) {
                                 moveDiagonally(this.x, this.y, xc, yc);
-                            twosteps = 0;
+                                twosteps = 0;
+                            }
                             resolveConflicts(this.x, this.y);
                             choice = 0;
                             this.setChoiceVisible = false; //Doubt
                             removeSet(this);
                             getPromoted();
+                            Board.pawnturns++;
                             return;
                         }
 
                         if (b && xc + 40 <= this.x && xc + 52 >= this.x) {
-                            if (!allyCheck(xc, yc))
+                            if (enemyCheck(xc, yc)){
                                 moveDiagonally(this.x, this.y, xc, yc);
-                            twosteps = 0;
+                                twosteps = 0;}
                             resolveConflicts(this.x, this.y);
                             choice = 0;
                             this.setChoiceVisible = false; //Doubt
                             removeSet(this);
                             getPromoted();
+                            Board.pawnturns++;
                             return;
                         }
 
@@ -173,12 +181,14 @@ public class Pawn extends Sprite implements MouseListener {
                 choice = 0;
                 this.setChoiceVisible = false; //Doubt
                 removeSet(this);
+                Board.pawnturns++;
                 return ;
             }
 
             choice = 0;
             this.setChoiceVisible = false; //Doubt
             removeSet(this);
+            Board.pawnturns++;
             return;
 
         }
@@ -186,6 +196,42 @@ public class Pawn extends Sprite implements MouseListener {
 
     public void addtoSet(Sprite sp, int c)
     {
+        if(enpassant!=0)
+        {
+            if(sp.color=="WHITE")
+            {
+                //Add the diagonal square ABOVE enemy for movement
+                if(enpassant==1)
+                {
+                    this.moveSetQueenx.add(x+44);
+                    this.moveSetQueeny.add(y-44);
+                }
+
+                if(enpassant==2)
+                {
+                    this.moveSetQueenx.add(x-44);
+                    this.moveSetQueeny.add(y-44);
+                }
+            }
+
+            else
+            {
+                //Add the diagonal square ABOVE enemy for movement
+                if(enpassant==1)
+                {
+                    this.moveSetQueenx.add(x+44);
+                    this.moveSetQueeny.add(y+44);
+                }
+
+                if(enpassant==2)
+                {
+                    this.moveSetQueenx.add(x-44);
+                    this.moveSetQueeny.add(y+44);
+                }
+            }
+
+        }
+
         if(twosteps==1 && y>5 && sp.color=="WHITE")
         {
             this.moveSetQueenx.add(x);
@@ -211,8 +257,8 @@ public class Pawn extends Sprite implements MouseListener {
         }
 
         if(sp.color=="WHITE") {
-            Boolean a = isPiece(this.x + 44, this.y - 44);
-            Boolean b = isPiece(this.x - 44, this.y - 44);
+            Boolean a = enemyCheck(this.x + 44, this.y - 44);
+            Boolean b = enemyCheck(this.x - 44, this.y - 44);
             if (a) {
                 this.moveSetQueenx.add(x + 44);
                 this.moveSetQueeny.add(y - 44);
@@ -225,8 +271,8 @@ public class Pawn extends Sprite implements MouseListener {
 
         else
         {
-            Boolean a = isPiece(this.x - 44, this.y + 44);
-            Boolean b = isPiece(this.x + 44, this.y + 44);
+            Boolean a = enemyCheck(this.x - 44, this.y + 44);
+            Boolean b = enemyCheck(this.x + 44, this.y + 44);
             if (a) {
                 this.moveSetQueenx.add(x - 44);
                 this.moveSetQueeny.add(y + 44);

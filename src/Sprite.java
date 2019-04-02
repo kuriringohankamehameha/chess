@@ -24,6 +24,7 @@ public class Sprite implements MouseListener {
     public ArrayList<Integer> moveSetQueeny;
 
     public int twosteps=0;
+    public int enpassant = 0;
 
     public Sprite() {
 
