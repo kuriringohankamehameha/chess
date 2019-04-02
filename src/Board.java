@@ -140,6 +140,56 @@ public class Board extends JPanel {
 
     }
 
+    public void setupBlackPieces()
+    {
+        //Sets up black pieces
+        int xoffset = -4;
+        int xcoord=xoffset;
+        int ycoord=0;
+
+        pawnArray = new Pawn[8];
+        knightArray = new Knight[2];
+        rookArray = new Rook[2];
+        bishopArray = new Bishop[2];
+
+        int xpawn = xcoord;
+        int ypawns = 44;
+
+        for(int i=0; i<8; i++)
+        {
+            pawnArray[i] = new Pawn((44*i + xoffset),ypawns,"BLACK",spriteArrayList);
+            spriteArrayList.add(pawnArray[i]);
+        }
+
+        int yrooks = 0;
+
+        rookArray[0] = new Rook(xoffset,yrooks,"BLACK",spriteArrayList);
+        rookArray[1] = new Rook((40 + 6*44),yrooks, "BLACK",spriteArrayList);
+
+        int yknights = yrooks;
+
+        knightArray[0] = new Knight(xoffset + 44,yknights,"BLACK",spriteArrayList);
+        knightArray[1] = new Knight((40 + 5*44),yknights,"BLACK", spriteArrayList);
+
+        int ybishops = yrooks;
+        bishopArray[0] = new Bishop(xoffset + 2*44,yknights,"BLACK",spriteArrayList);
+        bishopArray[1] = new Bishop((40 + 4*44),yknights,"BLACK", spriteArrayList);
+
+        for(int i=0; i<2; i++) {
+            spriteArrayList.add(rookArray[i]);
+            spriteArrayList.add(knightArray[i]);
+            spriteArrayList.add(bishopArray[i]);
+        }
+
+        //Add Black King (on white square)
+        spriteArrayList.add(new King(xoffset + 4*44,yrooks,"BLACK",spriteArrayList));
+
+        //Add Black Queen
+        spriteArrayList.add(new Queen(xoffset + 3*44,yrooks,"BLACK",spriteArrayList));
+
+
+    }
+
     public Board() throws Exception
     {
         ImageIcon b = new ImageIcon("/Users/ramachandran/IdeaProjects/chess+networking/src/chessboard.png");
@@ -147,6 +197,7 @@ public class Board extends JPanel {
 
         System.out.println("Board width = "+ bg.getWidth(null) + " ht = " + bg.getHeight(null));
 
+        /*
         //Add BLACK queen
         q=new Queen(xqueen,yqueen - 352/2,"BLACK",spriteArrayList);
         spriteArrayList.add(q);
@@ -171,8 +222,10 @@ public class Board extends JPanel {
         //Add BLACK Pawn
         p = new Pawn(xpawn, ypawn, "BLACK",spriteArrayList);
         spriteArrayList.add(p);
+        */
 
         setupWhitePieces();
+        setupBlackPieces();
 
         ActionListener al = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {

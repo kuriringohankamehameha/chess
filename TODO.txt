@@ -3,3 +3,4 @@ Checking King
 2 Player Threads
 CheckMate
 EnPassant
+BUG: Fix twostep of pawn if it doesnt move

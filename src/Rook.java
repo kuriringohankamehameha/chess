@@ -35,7 +35,7 @@ public class Rook extends Sprite implements MouseListener {
         if(color=="WHITE")
         loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wrook.png");
         else
-            loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/wrook.png");
+            loadImage("/Users/ramachandran/IdeaProjects/chess+networking/src/images/brook.png");
         this.image = this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
         getImageDimensions();
         super.moveSetQueenx = new ArrayList<>(28);
