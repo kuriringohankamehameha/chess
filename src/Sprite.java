@@ -342,7 +342,7 @@ public class Sprite implements MouseListener {
             return;
         }
 
-        if(sp.label=="ROOK")
+        if(sp.label=="ROOK" || sp.label=="KNIGHT")
         {
             int number = this.moveSetQueenx.size() - 1; //Careful!
             for(int i=number;i>=0;i--)

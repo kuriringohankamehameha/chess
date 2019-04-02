@@ -69,26 +69,27 @@ public class Knight extends Sprite implements MouseListener {
         {
             //2 steps in horiz and one vertical
 
-            if(abs(this.x - xc)<=50 && abs(this.y - yc)<=110 && abs(this.x - xc)>=22 && abs(this.y - yc)>=22)
+            //System.out.println("this.x - xc = "+abs(this.x-xc) + " this.y - yc = "+abs(this.y-yc)+"\n");
+            if(abs(this.x - xc)<=50 && abs(this.y - yc)<=110 && abs(this.x - xc)>=40 && abs(this.y - yc)>=66)
             {
 
                     moveHorizontally(this.x, xc);
                     moveVertically(this.y, yc);
                     resolveConflicts(this.x, this.y);
-                choice = 0;
-                this.setChoiceVisible = false; //Doubt
-                removeSet(this);
-                return ;
+                    choice = 0;
+                    this.setChoiceVisible = false; //Doubt
+                    removeSet(this);
+                    return ;
             }
 
-            if(abs(this.x - xc)<=110 && abs(this.y - yc)<=65 && abs(this.x - xc)>=22 && abs(this.y - yc)>=22)
+            if(abs(this.x - xc)<=110 && abs(this.y - yc)<=65 && abs(this.x - xc)>=66 && abs(this.y - yc)>=22)
             {
                     moveHorizontally(this.x,xc);
                     moveVertically(this.y, yc);
                     resolveConflicts(this.x, this.y);
                     choice = 0;
-                this.setChoiceVisible = false; //Doubt
-                removeSet(this);
+                    this.setChoiceVisible = false; //Doubt
+                    removeSet(this);
                     return ;
             }
 
