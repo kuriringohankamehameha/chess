@@ -41,6 +41,7 @@ public class Pawn extends Sprite implements MouseListener {
         getImageDimensions();
         super.moveSetQueenx = new ArrayList<>(3);
         super.moveSetQueeny = new ArrayList<>(3);
+        twosteps=1;
 
     }
 
@@ -73,7 +74,14 @@ public class Pawn extends Sprite implements MouseListener {
         if(choice == 1)
         {
             if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
-                if((this.y - yc)>=50) {
+                if(twosteps==1 && (this.y-yc)>=50+44)
+                {
+                    if(!allyCheck(xc,yc) && verticalClear(x,y,xc,yc) && enemyverticalClear(x,y,xc,yc)) {
+                        moveVertically(this.y, yc);
+                    }
+                    twosteps=0;
+                }
+                else if((this.y - yc)>=50) {
                     if(!allyCheck(xc,yc) && verticalClear(x,y,xc,yc) && enemyverticalClear(x,y,xc,yc)) {
                         moveVertically(this.y, yc);
                     }
@@ -130,6 +138,12 @@ public class Pawn extends Sprite implements MouseListener {
 
     public void addtoSet(Sprite sp, int c)
     {
+        if(twosteps==1 && y>5)
+        {
+            this.moveSetQueenx.add(x);
+            this.moveSetQueeny.add(y-88);
+        }
+
         if(y>5)
         {
             this.moveSetQueenx.add(x);
