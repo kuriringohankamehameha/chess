@@ -85,6 +85,9 @@ public class Queen extends Sprite implements MouseListener {
         xc+=xoffset;
         yc+=yoffset;
 
+        //System.out.println(this.x+" " + this.y + "\n");
+
+
         //Set movesetqueen
         //First horizontally
         addtoSet(this,0);

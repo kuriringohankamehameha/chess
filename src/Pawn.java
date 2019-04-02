@@ -83,8 +83,13 @@ public class Pawn extends Sprite implements MouseListener {
                     for(Sprite sprite:this.list) {
                         if(this==sprite) {
                             this.list.get(i).visible = false;
-                            Queen q = new Queen(xcoord,ycoord,this.list);
-                            this.list.add(q);
+                            //Queen q = new Queen(xcoord,ycoord,this.list);
+                            //super.list.add(q);
+                            //this.list.remove(sprite);
+                            //I cannot add this to a list which won't be used
+                            Board.promotion=1;
+                            Board.promotion_x=xcoord;
+                            Board.promotion_y=ycoord;
                             this.list.remove(sprite);
                             return;
                         }

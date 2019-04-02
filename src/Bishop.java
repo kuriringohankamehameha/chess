@@ -36,7 +36,7 @@ public class Bishop extends Sprite implements MouseListener {
         this.image=this.image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
 
         getImageDimensions();
-        System.out.println("Bishop\n");
+        //System.out.println("Bishop\n");
         super.moveSetQueenx = new ArrayList<>(28);
         super.moveSetQueeny = new ArrayList<>(28);
     }

@@ -72,8 +72,22 @@ public class Board extends JPanel {
 
     public static ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
 
+    public static int promotion=0;
+    public static int promotion_x;
+    public static int promotion_y;
+
     int alpha = 127/2; // 75% transparent
     Color myColour = new Color(155, 150, 150, alpha);
+
+    public static int getXC(Sprite sp)
+    {
+        return sp.x;
+    }
+
+    public static int getYC(Sprite sp)
+    {
+        return sp.y;
+    }
 
     public void setupWhitePieces()
     {
@@ -320,6 +334,17 @@ public class Board extends JPanel {
 
         //Set Graphics Color
         g.setColor(myColour);
+
+        if(promotion==1)
+        {
+            //System.out.println("Promotion "+promotion_x+ " , "+ promotion_y+ "\n");
+            Queen qe = new Queen(promotion_x,promotion_y,spriteArrayList);
+            spriteArrayList.add(qe);
+            //System.out.println("New queen added at position "+qe.x+", "+qe.y+"\n");
+            //System.out.println(spriteArrayList.get(spriteArrayList.size()-1).label);
+            promotion=0;
+            Main.addListenertoend(Main.f,spriteArrayList);
+        }
 
         for(int i=0; i<spriteArrayList.size(); i++)
         {

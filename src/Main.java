@@ -6,10 +6,13 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 import static javafx.application.Application.launch;
 
 public class Main extends Application {
+
+    public static JFrame f;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -35,11 +38,18 @@ public class Main extends Application {
     }
 
     */
+    public static void addListenertoend(JFrame f,ArrayList<Sprite> al)
+    {
+        if(al.get(al.size()-1).label=="QUEEN")
+        f.addMouseListener((Queen)al.get(al.size()-1));
+
+    }
+
 public static void main(String[] args) {
     SwingUtilities.invokeLater(new Runnable() {
         public void run() {
             try {
-                JFrame f = new JFrame("Chess");
+                f = new JFrame("Chess");
                 f.setSize(500, 500);
                 f.setResizable(false);
                 f.setVisible(true);
