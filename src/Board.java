@@ -73,6 +73,7 @@ public class Board extends JPanel {
     public static ArrayList<Sprite> spriteArrayList = new ArrayList<>(16);
 
     public static int promotion=0;
+    public static int color = 0; //WHITE
     public static int promotion_x;
     public static int promotion_y;
 
@@ -167,8 +168,8 @@ public class Board extends JPanel {
         n = new Knight(xknight, yknight, "WHITE",spriteArrayList);
         spriteArrayList.add(n);
 
-        //Add Pawn
-        p = new Pawn(xpawn, ypawn, "WHITE",spriteArrayList);
+        //Add BLACK Pawn
+        p = new Pawn(xpawn, ypawn, "BLACK",spriteArrayList);
         spriteArrayList.add(p);
 
         setupWhitePieces();
@@ -338,8 +339,15 @@ public class Board extends JPanel {
         if(promotion==1)
         {
             //System.out.println("Promotion "+promotion_x+ " , "+ promotion_y+ "\n");
-            Queen qe = new Queen(promotion_x,promotion_y,"WHITE",spriteArrayList);
-            spriteArrayList.add(qe);
+            if(color == 0) {
+                Queen qe = new Queen(promotion_x, promotion_y, "WHITE", spriteArrayList);
+                spriteArrayList.add(qe);
+            }
+            else
+            {
+                Queen qe = new Queen(promotion_x, promotion_y, "BLACK", spriteArrayList);
+                spriteArrayList.add(qe);
+            }
             //System.out.println("New queen added at position "+qe.x+", "+qe.y+"\n");
             //System.out.println(spriteArrayList.get(spriteArrayList.size()-1).label);
             promotion=0;

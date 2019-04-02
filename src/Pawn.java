@@ -74,16 +74,29 @@ public class Pawn extends Sprite implements MouseListener {
         if(choice == 1)
         {
             if((this.x <= xc+22 && this.x >=xc-22 )&& !(this.y <= yc+22 & this.y >= yc-22)) {
-                if(twosteps==1 && (this.y-yc)>=50+44)
-                {
-                    if(!allyCheck(xc,yc) && verticalClear(x,y,xc,yc) && enemyverticalClear(x,y,xc,yc)) {
-                        moveVertically(this.y, yc);
+                if(this.color=="WHITE") {
+                    if (twosteps == 1 && (this.y - yc) >= 50 + 44 && this.y - 44 * 3 <= yc) {
+                        if (!allyCheck(xc, yc) && verticalClear(x, y, xc, yc) && enemyverticalClear(x, y, xc, yc)) {
+                            moveVertically(this.y, yc);
+                        }
+                        twosteps = 0;
+                    } else if ((this.y - yc) >= 50 && this.y - 88 <= yc) {
+                        if (!allyCheck(xc, yc) && verticalClear(x, y, xc, yc) && enemyverticalClear(x, y, xc, yc)) {
+                            moveVertically(this.y, yc);
+                        }
                     }
-                    twosteps=0;
                 }
-                else if((this.y - yc)>=50) {
-                    if(!allyCheck(xc,yc) && verticalClear(x,y,xc,yc) && enemyverticalClear(x,y,xc,yc)) {
-                        moveVertically(this.y, yc);
+                else
+                {
+                    if (twosteps == 1 && (yc-this.y) <= 55 + 44 && yc>=80+this.y) {
+                        if (!allyCheck(xc, yc) && verticalClear(x, y, xc, yc) && enemyverticalClear(x, y, xc, yc)) {
+                            moveVertically(this.y, yc);
+                        }
+                        twosteps = 0;
+                    } else if ((yc-this.y) <= 66 && yc>=this.y+22) {
+                        if (!allyCheck(xc, yc) && verticalClear(x, y, xc, yc) && enemyverticalClear(x, y, xc, yc)) {
+                            moveVertically(this.y, yc);
+                        }
                     }
                 }
                 choice = 0;
@@ -96,31 +109,66 @@ public class Pawn extends Sprite implements MouseListener {
 
             if((abs(this.x - xc)<=abs(this.y-yc)+11 && abs(this.x - xc)>=abs(this.y - yc)-11) || (abs(this.y - yc)<=abs(this.x-xc)+11 && abs(this.y - yc)>=abs(this.x - xc)-11))
             {
-                Boolean a = isPiece(this.x+44,this.y-44);
-                Boolean b = isPiece(this.x-44,this.y-44);
-                if((this.y>yc)&&(a || b)){
-                   if(a && this.x+40<=xc && this.x+52>=xc) {
-                       if(!allyCheck(xc,yc))
-                           moveDiagonally(this.x, this.y, xc, yc);
-                       resolveConflicts(this.x, this.y);
-                       choice = 0;
-                       this.setChoiceVisible = false; //Doubt
-                       removeSet(this);
-                       getPromoted();
-                       return;
-                   }
+                if(this.color=="WHITE") {
+                    Boolean a = isPiece(this.x + 44, this.y - 44);
+                    Boolean b = isPiece(this.x - 44, this.y - 44);
+                    if ((this.y > yc) && (a || b)) {
+                        if (a && this.x + 40 <= xc && this.x + 52 >= xc) {
+                            if (!allyCheck(xc, yc))
+                                moveDiagonally(this.x, this.y, xc, yc);
+                            twosteps = 0;
+                            resolveConflicts(this.x, this.y);
+                            choice = 0;
+                            this.setChoiceVisible = false; //Doubt
+                            removeSet(this);
+                            getPromoted();
+                            return;
+                        }
 
-                    if(b && xc+40<=this.x && xc+52>=this.x) {
-                        if(!allyCheck(xc,yc))
-                            moveDiagonally(this.x, this.y, xc, yc);
-                        resolveConflicts(this.x, this.y);
-                        choice = 0;
-                        this.setChoiceVisible = false; //Doubt
-                        removeSet(this);
-                        getPromoted();
-                        return;
+                        if (b && xc + 40 <= this.x && xc + 52 >= this.x) {
+                            if (!allyCheck(xc, yc))
+                                moveDiagonally(this.x, this.y, xc, yc);
+                            twosteps = 0;
+                            resolveConflicts(this.x, this.y);
+                            choice = 0;
+                            this.setChoiceVisible = false; //Doubt
+                            removeSet(this);
+                            getPromoted();
+                            return;
+                        }
+
                     }
+                }
+                else
+                {
+                    Boolean a = isPiece(this.x + 44, this.y + 44);
+                    Boolean b = isPiece(this.x - 44, this.y + 44);
+                    if ((this.y < yc) && (a || b)) {
+                        if (a && this.x + 40 <= xc && this.x + 52 >= xc) {
+                            if (!allyCheck(xc, yc))
+                                moveDiagonally(this.x, this.y, xc, yc);
+                            twosteps = 0;
+                            resolveConflicts(this.x, this.y);
+                            choice = 0;
+                            this.setChoiceVisible = false; //Doubt
+                            removeSet(this);
+                            getPromoted();
+                            return;
+                        }
 
+                        if (b && xc + 40 <= this.x && xc + 52 >= this.x) {
+                            if (!allyCheck(xc, yc))
+                                moveDiagonally(this.x, this.y, xc, yc);
+                            twosteps = 0;
+                            resolveConflicts(this.x, this.y);
+                            choice = 0;
+                            this.setChoiceVisible = false; //Doubt
+                            removeSet(this);
+                            getPromoted();
+                            return;
+                        }
+
+                    }
                 }
                 choice = 0;
                 this.setChoiceVisible = false; //Doubt
@@ -138,29 +186,55 @@ public class Pawn extends Sprite implements MouseListener {
 
     public void addtoSet(Sprite sp, int c)
     {
-        if(twosteps==1 && y>5)
+        if(twosteps==1 && y>5 && sp.color=="WHITE")
         {
             this.moveSetQueenx.add(x);
             this.moveSetQueeny.add(y-88);
         }
 
-        if(y>5)
+        else if(twosteps==1 && y<345 && sp.color=="BLACK")
+        {
+            this.moveSetQueenx.add(x);
+            this.moveSetQueeny.add(y+88);
+        }
+
+        if(y>5 && sp.color=="WHITE")
         {
             this.moveSetQueenx.add(x);
             this.moveSetQueeny.add(y-44);
         }
 
-        Boolean a = isPiece(this.x+44,this.y-44);
-        Boolean b = isPiece(this.x-44,this.y-44);
-        if(a)
+        else if(sp.color=="BLACK" && y<345)
         {
-            this.moveSetQueenx.add(x+44);
-            this.moveSetQueeny.add(y-44);
+            this.moveSetQueenx.add(x);
+            this.moveSetQueeny.add(y+44);
         }
-        if(b)
+
+        if(sp.color=="WHITE") {
+            Boolean a = isPiece(this.x + 44, this.y - 44);
+            Boolean b = isPiece(this.x - 44, this.y - 44);
+            if (a) {
+                this.moveSetQueenx.add(x + 44);
+                this.moveSetQueeny.add(y - 44);
+            }
+            if (b) {
+                this.moveSetQueenx.add(x - 44);
+                this.moveSetQueeny.add(y - 44);
+            }
+        }
+
+        else
         {
-            this.moveSetQueenx.add(x-44);
-            this.moveSetQueeny.add(y-44);
+            Boolean a = isPiece(this.x - 44, this.y + 44);
+            Boolean b = isPiece(this.x + 44, this.y + 44);
+            if (a) {
+                this.moveSetQueenx.add(x - 44);
+                this.moveSetQueeny.add(y + 44);
+            }
+            if (b) {
+                this.moveSetQueenx.add(x + 44);
+                this.moveSetQueeny.add(y + 44);
+            }
         }
 
 
@@ -168,27 +242,53 @@ public class Pawn extends Sprite implements MouseListener {
 
     void getPromoted()
     {
-        if(this.y<=5)
-        {
-            int i=0;
-            int xcoord = this.x;
-            int ycoord = this.y;
-            for(Sprite sprite:this.list) {
-                if(this==sprite) {
-                    this.list.get(i).visible = false;
-                    //Queen q = new Queen(xcoord,ycoord,this.list);
-                    //super.list.add(q);
-                    //this.list.remove(sprite);
-                    //I cannot add this to a list which won't be used
-                    Board.promotion=1;
-                    Board.promotion_x=xcoord;
-                    Board.promotion_y=ycoord;
-                    this.list.remove(sprite);
-                    return;
+        if(this.color=="WHITE") {
+            if (this.y <= 5) {
+                int i = 0;
+                int xcoord = this.x;
+                int ycoord = this.y;
+                for (Sprite sprite : this.list) {
+                    if (this == sprite) {
+                        this.list.get(i).visible = false;
+                        //Queen q = new Queen(xcoord,ycoord,this.list);
+                        //super.list.add(q);
+                        //this.list.remove(sprite);
+                        //I cannot add this to a list which won't be used
+                        Board.promotion = 1;
+                        Board.promotion_x = xcoord;
+                        Board.promotion_y = ycoord;
+                        this.list.remove(sprite);
+                        return;
+                    }
+                    i++;
                 }
-                i++;
-            }
 
+            }
+        }
+        else
+        {
+            if (this.y >= 302) {
+                int i = 0;
+                int xcoord = this.x;
+                int ycoord = this.y;
+                for (Sprite sprite : this.list) {
+                    if (this == sprite) {
+                        this.list.get(i).visible = false;
+                        //Queen q = new Queen(xcoord,ycoord,this.list);
+                        //super.list.add(q);
+                        //this.list.remove(sprite);
+                        //I cannot add this to a list which won't be used
+                        Board.promotion = 1;
+                        Board.promotion_x = xcoord;
+                        Board.promotion_y = ycoord;
+                        Board.color=1;
+                        this.list.remove(sprite);
+                        return;
+                    }
+                    i++;
+                }
+
+            }
         }
     }
 }
