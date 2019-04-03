@@ -233,6 +233,9 @@ public class Board extends JPanel {
         setupWhitePieces();
         setupBlackPieces();
 
+        Square sq = new Square(5,5);
+        Main.f.addMouseListener(sq);
+
         ActionListener al = new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
                 repaint();

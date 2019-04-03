@@ -1,9 +1,11 @@
+import java.awt.event.MouseEvent;
+
 /**
  * A square is a board with rowsize = colsize = 1
  * A square can have a piece
  * A square cannot be deleted, but a piece can
  */
-public class Square extends Board{
+public class Square extends Sprite{
 
     public boolean hasSprite = false;
     public int row_index;
@@ -17,6 +19,16 @@ public class Square extends Board{
         this.row_index = x;
         this.col_index = y;
         this.sprite = null;
+
+    }
+
+    public Square(int x, int y,Sprite sp) throws Exception
+    {
+        //When the board is initialized at the very beginning, 8*8 squares are created with hasPiece = false
+        this.hasSprite = true;
+        this.row_index = x;
+        this.col_index = y;
+        this.sprite = sp;
 
     }
 
@@ -57,5 +69,19 @@ public class Square extends Board{
 
 
     }
+
+    public void mouseClicked(MouseEvent e)
+    {
+        int xc = e.getX();
+        int yc = e.getY()-20;
+        if(xc>=44*row_index && xc<=44*(row_index+1) && yc>=44*col_index && yc<=44*(col_index+1))
+        {
+            System.out.println("Square with "+row_index+" , "+col_index+" clicked\n");
+
+        }
+        else
+            return;
+    }
+
 
 }
