@@ -112,6 +112,36 @@ public class Bishop extends Sprite implements MouseListener {
 
                 this.setChoiceVisible = false;
                 removeSet(this);
+                ArrayList<Integer> al31 = enemydiagonalCoordinates(this.x,this.y,Board.whiteking.x,Board.whiteking.y);
+                ArrayList<Integer> al32 = enemydiagonalCoordinates(Board.whiteking.x,this.y,this.x,Board.whiteking.y);
+                ArrayList<Integer> al33 = enemydiagonalCoordinates(this.x,Board.whiteking.y,Board.whiteking.x,this.y);
+                ArrayList<Integer> al34 = enemydiagonalCoordinates(Board.whiteking.x,Board.whiteking.y,this.x,this.y);
+
+                if(enemydiagonalClear(x,y,Board.whiteking.x-44,Board.whiteking.y-44)||enemydiagonalClear(x,y,Board.whiteking.x-44,Board.whiteking.y+44)||enemydiagonalClear(x,y,Board.whiteking.x+44,Board.whiteking.y+44)||enemydiagonalClear(x,y,Board.whiteking.x-44,Board.whiteking.y+44)) {
+                    if (al31.size()>0 && abs(al31.get(0) - Board.whiteking.x) <= 10 && abs(al31.get(1) - Board.whiteking.y) <= 10) {
+                        Board.wchecked = true;
+                        System.out.println("White King checked\n");
+                        al31.clear();
+                    }
+
+                    if (al32.size()>0 && abs(al32.get(0) - Board.whiteking.x) <= 10 && abs(al32.get(1) - Board.whiteking.y) <= 10) {
+                        Board.wchecked = true;
+                        System.out.println("White King checked\n");
+                        al31.clear();
+                    }
+
+                    if (al33.size()>0 && abs(al33.get(0) - Board.whiteking.x) <= 10 && abs(al33.get(1) - Board.whiteking.y) <= 10) {
+                        Board.wchecked = true;
+                        System.out.println("White King checked\n");
+                        al33.clear();
+                    }
+
+                    if (al34.size()>0 && abs(al34.get(0) - Board.whiteking.x) <= 10 && abs(al34.get(1) - Board.whiteking.y) <= 10) {
+                        Board.wchecked = true;
+                        System.out.println("White King checked\n");
+                        al34.clear();
+                    }
+                }
                 return ;
             }
 
