@@ -135,12 +135,12 @@ public class Queen extends Sprite implements MouseListener {
             if(enemyverticalClear(x,y,x,Board.whiteking.y-44)||enemyverticalClear(x,Board.whiteking.y,x,y)) {
                 if (al11.size()>0 &&(al11.get(0) - Board.whiteking.x) <= 10 && abs(al11.get(1) - Board.whiteking.y) <= 10) {
                     Board.wchecked = true;
-                    System.out.println("White King checked\n");
+                    System.out.println("White King checked v1\n");
                     al11.clear();
                 }
                 if (al12.size()>0 &&(al12.get(0) - Board.whiteking.x) <= 10 && abs(al12.get(1) - Board.whiteking.y) <= 10) {
                     Board.wchecked = true;
-                    System.out.println("White King checked\n");
+                    System.out.println("White King checked v2\n");
                     al12.clear();
                 }
 
@@ -149,12 +149,12 @@ public class Queen extends Sprite implements MouseListener {
             if(enemyhoriontalClear(x,y,Board.whiteking.x-44,y)||enemyhoriontalClear(x,y,Board.whiteking.x+44,y)) {
                 if (al21.size()>0 && abs(al21.get(0) - Board.whiteking.x) <= 10 && abs(al21.get(1) - Board.whiteking.y) <= 10) {
                     Board.wchecked = true;
-                    System.out.println("White King checked\n");
+                    System.out.println("White King checked h1\n");
                     al21.clear();
                 }
                 if (al22.size()>0 && abs(al22.get(0) - Board.whiteking.x) <= 10 && abs(al22.get(1) - Board.whiteking.y) <= 10) {
                     Board.wchecked = true;
-                    System.out.println("White King checked\n");
+                    System.out.println("White King checked h2\n");
                     al22.clear();
                 }
 

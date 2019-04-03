@@ -92,6 +92,25 @@ public class Rook extends Sprite implements MouseListener {
                 choice = 0;
                 this.setChoiceVisible = false;
                 removeSet(this);
+
+                ArrayList<Integer> al21 = enemyhorizontalCoordinates(this.x,this.y,Board.whiteking.x,y);
+                ArrayList<Integer> al22 = enemyhorizontalCoordinates(Board.whiteking.x,this.y,this.x,y);
+                if(al22.size()>0)
+                    System.out.println("AL22" +abs(al22.get(0) - Board.whiteking.x) + "\n");
+
+                if(enemyhoriontalClear(x,y,Board.whiteking.x-44,y)||enemyhoriontalClear(x,y,Board.whiteking.x+44,y)) {
+                    if (al21.size()>0 && abs(al21.get(0) - Board.whiteking.x) <= 10 && abs(al21.get(1) - Board.whiteking.y) <= 10) {
+                        Board.wchecked = true;
+                        System.out.println("White King checkedh1\n");
+                        al21.clear();
+                    }
+                    if (al22.size()>0 && abs(al22.get(0) - Board.whiteking.x) <= 10 && abs(al22.get(1) - Board.whiteking.y) <= 10) {
+                        Board.wchecked = true;
+                        System.out.println("White King checkedh2\n");
+                        al22.clear();
+                    }
+
+                }
                 return ;
             }
 
@@ -113,6 +132,21 @@ public class Rook extends Sprite implements MouseListener {
                 choice = 0;
                 this.setChoiceVisible = false;
                 removeSet(this);
+                ArrayList<Integer> al11 = enemyverticalCoordinates(this.x,this.y,this.x,Board.whiteking.y);
+                ArrayList<Integer> al12 = enemyverticalCoordinates(this.x,Board.whiteking.y,this.x,this.y);
+                if(enemyverticalClear(x,y,x,Board.whiteking.y-44)||enemyverticalClear(x,Board.whiteking.y,x,y)) {
+                    if (al11.size()>0 &&(al11.get(0) - Board.whiteking.x) <= 10 && abs(al11.get(1) - Board.whiteking.y) <= 10) {
+                        Board.wchecked = true;
+                        System.out.println("White King checkedv1\n");
+                        al11.clear();
+                    }
+                    if (al12.size()>0 &&(al12.get(0) - Board.whiteking.x) <= 10 && abs(al12.get(1) - Board.whiteking.y) <= 10) {
+                        Board.wchecked = true;
+                        System.out.println("White King checkedv2\n");
+                        al12.clear();
+                    }
+
+                }
                 return ;
             }
 
