@@ -78,6 +78,10 @@ public class Board extends JPanel {
     public static int promotion_y;
 
     public static int pawnturns=0;
+    public static boolean wchecked = false;
+
+    static King whiteking = new King(-4 + 4*44,7*44,"WHITE",spriteArrayList);
+    static King blackking = new King(-4 + 4*44,0,"BLACK",spriteArrayList);
 
     int alpha = 127/2; // 75% transparent
     Color myColour = new Color(155, 150, 150, alpha);
@@ -134,7 +138,7 @@ public class Board extends JPanel {
         }
 
         //Add White King (on black square)
-        spriteArrayList.add(new King(xoffset + 4*44,yrooks,"WHITE",spriteArrayList));
+        spriteArrayList.add(whiteking);
 
         //Add White Queen
         spriteArrayList.add(new Queen(xoffset + 3*44,yrooks,"WHITE",spriteArrayList));
@@ -184,7 +188,7 @@ public class Board extends JPanel {
         }
 
         //Add Black King (on white square)
-        spriteArrayList.add(new King(xoffset + 4*44,yrooks,"BLACK",spriteArrayList));
+        spriteArrayList.add(blackking);
 
         //Add Black Queen
         spriteArrayList.add(new Queen(xoffset + 3*44,yrooks,"BLACK",spriteArrayList));

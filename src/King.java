@@ -55,6 +55,9 @@ public class King extends Sprite implements MouseListener{
     {
         if(!this.visible)
             return;
+        //Check condition
+        //If the white king is the nearest enemy wrt opposition, he is checked
+
         //Default offsets for the mouse
         int xoffset = -25;
         int yoffset = -55;
