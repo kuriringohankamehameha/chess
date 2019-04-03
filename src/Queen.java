@@ -123,10 +123,11 @@ public class Queen extends Sprite implements MouseListener {
             //Checking white king
             //Assuming king stays in same half - Please debug this
             ArrayList<Integer> al = enemyverticalCoordinates(this.x,this.y,this.x,Board.whiteking.y);
-            if((al.get(0)-Board.whiteking.x)<=10 && abs(al.get(1)-Board.whiteking.y)<=10)
-            {
-                Board.wchecked=true;
-                System.out.println("White King checked\n");
+            if(enemyverticalClear(x,y,x,Board.whiteking.y-44)||enemyverticalClear(x,y,x,Board.whiteking.y+44)) {
+                if ((al.get(0) - Board.whiteking.x) <= 10 && abs(al.get(1) - Board.whiteking.y) <= 10) {
+                    Board.wchecked = true;
+                    System.out.println("White King checked\n");
+                }
             }
             al.clear();
             return;
