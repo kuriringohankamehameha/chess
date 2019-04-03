@@ -122,14 +122,72 @@ public class Queen extends Sprite implements MouseListener {
             removeSet(this);
             //Checking white king
             //Assuming king stays in same half - Please debug this
-            ArrayList<Integer> al = enemyverticalCoordinates(this.x,this.y,this.x,Board.whiteking.y);
-            if(enemyverticalClear(x,y,x,Board.whiteking.y-44)||enemyverticalClear(x,y,x,Board.whiteking.y+44)) {
-                if ((al.get(0) - Board.whiteking.x) <= 10 && abs(al.get(1) - Board.whiteking.y) <= 10) {
+            ArrayList<Integer> al11 = enemyverticalCoordinates(this.x,this.y,this.x,Board.whiteking.y);
+            ArrayList<Integer> al12 = enemyverticalCoordinates(this.x,Board.whiteking.y,this.x,this.y);
+            ArrayList<Integer> al21 = enemyhorizontalCoordinates(this.x,this.y,Board.whiteking.x,y);
+            ArrayList<Integer> al22 = enemyhorizontalCoordinates(Board.whiteking.x,this.y,this.x,y);
+            ArrayList<Integer> al31 = enemydiagonalCoordinates(this.x,this.y,Board.whiteking.x,Board.whiteking.y);
+            ArrayList<Integer> al32 = enemydiagonalCoordinates(Board.whiteking.x,this.y,this.x,Board.whiteking.y);
+            ArrayList<Integer> al33 = enemydiagonalCoordinates(this.x,Board.whiteking.y,Board.whiteking.x,this.y);
+            ArrayList<Integer> al34 = enemydiagonalCoordinates(Board.whiteking.x,Board.whiteking.y,this.x,this.y);
+
+
+            if(enemyverticalClear(x,y,x,Board.whiteking.y-44)||enemyverticalClear(x,Board.whiteking.y,x,y)) {
+                if (al11.size()>0 &&(al11.get(0) - Board.whiteking.x) <= 10 && abs(al11.get(1) - Board.whiteking.y) <= 10) {
                     Board.wchecked = true;
                     System.out.println("White King checked\n");
+                    al11.clear();
+                }
+                if (al12.size()>0 &&(al12.get(0) - Board.whiteking.x) <= 10 && abs(al12.get(1) - Board.whiteking.y) <= 10) {
+                    Board.wchecked = true;
+                    System.out.println("White King checked\n");
+                    al12.clear();
+                }
+
+            }
+
+            if(enemyhoriontalClear(x,y,Board.whiteking.x-44,y)||enemyhoriontalClear(x,y,Board.whiteking.x+44,y)) {
+                if (al21.size()>0 && abs(al21.get(0) - Board.whiteking.x) <= 10 && abs(al21.get(1) - Board.whiteking.y) <= 10) {
+                    Board.wchecked = true;
+                    System.out.println("White King checked\n");
+                    al21.clear();
+                }
+                if (al22.size()>0 && abs(al22.get(0) - Board.whiteking.x) <= 10 && abs(al22.get(1) - Board.whiteking.y) <= 10) {
+                    Board.wchecked = true;
+                    System.out.println("White King checked\n");
+                    al22.clear();
+                }
+
+            }
+
+
+            if(enemydiagonalClear(x,y,Board.whiteking.x-44,Board.whiteking.y-44)||enemydiagonalClear(x,y,Board.whiteking.x-44,Board.whiteking.y+44)||enemydiagonalClear(x,y,Board.whiteking.x+44,Board.whiteking.y+44)||enemydiagonalClear(x,y,Board.whiteking.x-44,Board.whiteking.y+44)) {
+                if (al31.size()>0 && abs(al31.get(0) - Board.whiteking.x) <= 10 && abs(al31.get(1) - Board.whiteking.y) <= 10) {
+                    Board.wchecked = true;
+                    System.out.println("White King checked\n");
+                    al31.clear();
+                }
+
+                if (al32.size()>0 && abs(al32.get(0) - Board.whiteking.x) <= 10 && abs(al32.get(1) - Board.whiteking.y) <= 10) {
+                    Board.wchecked = true;
+                    System.out.println("White King checked\n");
+                    al31.clear();
+                }
+
+                if (al33.size()>0 && abs(al33.get(0) - Board.whiteking.x) <= 10 && abs(al33.get(1) - Board.whiteking.y) <= 10) {
+                    Board.wchecked = true;
+                    System.out.println("White King checked\n");
+                    al33.clear();
+                }
+
+                if (al34.size()>0 && abs(al34.get(0) - Board.whiteking.x) <= 10 && abs(al34.get(1) - Board.whiteking.y) <= 10) {
+                    Board.wchecked = true;
+                    System.out.println("White King checked\n");
+                    al34.clear();
                 }
             }
-            al.clear();
+
+
             return;
         }
 

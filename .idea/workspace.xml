@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8116d17b-e342-4814-ae72-01042b79ceed" name="Default Changelist" comment="Added Rook">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chess+networking/Queen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chess+networking/Queen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Queen.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -50,7 +48,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Sprite.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="98">
+                <state relative-caret-position="1824">
                   <caret line="738" lean-forward="true" selection-start-line="738" selection-end-line="738" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -118,8 +116,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Queen.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="266">
-                  <caret line="125" column="106" selection-start-line="125" selection-start-column="106" selection-end-line="125" selection-end-column="106" />
+                <state relative-caret-position="318">
+                  <caret line="170" column="91" selection-start-line="170" selection-start-column="91" selection-end-line="170" selection-end-column="91" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -303,7 +301,7 @@
       <workItem from="1554143667101" duration="10307000" />
       <workItem from="1554198463680" duration="2523000" />
       <workItem from="1554205183570" duration="17614000" />
-      <workItem from="1554247180671" duration="5004000" />
+      <workItem from="1554247180671" duration="7015000" />
     </task>
     <task id="LOCAL-00001" summary="Added Rook">
       <created>1554053959766</created>
@@ -316,7 +314,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="109404000" />
+    <option name="totallyTimeSpent" value="111415000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -537,7 +535,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Sprite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
+        <state relative-caret-position="1824">
           <caret line="738" lean-forward="true" selection-start-line="738" selection-end-line="738" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -547,8 +545,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Queen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="125" column="106" selection-start-line="125" selection-start-column="106" selection-end-line="125" selection-end-column="106" />
+        <state relative-caret-position="318">
+          <caret line="170" column="91" selection-start-line="170" selection-start-column="91" selection-end-line="170" selection-end-column="91" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
