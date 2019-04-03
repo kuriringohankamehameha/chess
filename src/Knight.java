@@ -81,29 +81,34 @@ public class Knight extends Sprite implements MouseListener {
                     moveVertically(this.y, yc);
                 }
                     resolveConflicts(this.x, this.y);
-                    choice = 0;
-                    this.setChoiceVisible = false; //Doubt
-                    removeSet(this);
-                    return ;
+                    //choice = 0;
+                    //this.setChoiceVisible = false; //Doubt
+                    //removeSet(this);
+                    //return ;
             }
 
-            if(abs(this.x - xc)<=110 && abs(this.y - yc)<=65 && abs(this.x - xc)>=66 && abs(this.y - yc)>=22)
+            else if(abs(this.x - xc)<=110 && abs(this.y - yc)<=65 && abs(this.x - xc)>=66 && abs(this.y - yc)>=22)
             {
                 if(!allyCheck(xc,yc)) {
                     moveHorizontally(this.x, xc);
                     moveVertically(this.y, yc);
                 }
                     resolveConflicts(this.x, this.y);
-                    choice = 0;
-                    this.setChoiceVisible = false; //Doubt
-                    removeSet(this);
-                    return ;
+                    //choice = 0;
+                    //this.setChoiceVisible = false; //Doubt
+                    //removeSet(this);
+                    //return ;
             }
 
             choice = 0;
             this.setChoiceVisible = false; //Doubt
             removeSet(this);
-            return;
+            if((abs(x+44-Board.whiteking.x)<=10 && abs(y+88-Board.whiteking.y)<=10)||(abs(x-44-Board.whiteking.x)<=10 && abs(y+88-Board.whiteking.y)<=10)||(abs(x+44-Board.whiteking.x)<=10 && abs(y-88-Board.whiteking.y)<=10)||(abs(x-44-Board.whiteking.x)<=10 && abs(y-88-Board.whiteking.y)<=10)||(abs(x+88-Board.whiteking.x)<=10 && abs(y+44-Board.whiteking.y)<=10)||(abs(x+88-Board.whiteking.x)<=10 && abs(y-44-Board.whiteking.y)<=10)||(abs(x-88-Board.whiteking.x)<=10 && abs(y+44-Board.whiteking.y)<=10)||(abs(x-88-Board.whiteking.x)<=10 && abs(y-44-Board.whiteking.y)<=10))
+            {
+                Board.wchecked=true;
+                System.out.println("White King checked\n");
+            }
+                return;
 
         }
     }

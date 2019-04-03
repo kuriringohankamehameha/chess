@@ -105,6 +105,11 @@ public class Pawn extends Sprite implements MouseListener {
                 //If pawn goes to y=0, it becomes Queen
                 getPromoted();
                 Board.pawnturns++;
+                if((abs(x+44-Board.whiteking.x)<=10 && abs(y+44-Board.whiteking.y)<=10)||(abs(x-44-Board.whiteking.x)<=10 && abs(y+44-Board.whiteking.y)<=10))
+                {
+                    Board.wchecked=true;
+                    System.out.println("White King checked\n");
+                }
                 return ;
             }
 
@@ -160,6 +165,11 @@ public class Pawn extends Sprite implements MouseListener {
                             removeSet(this);
                             getPromoted();
                             Board.pawnturns++;
+                            if((abs(x+44-Board.whiteking.x)<=10 && abs(y+44-Board.whiteking.y)<=10)||(abs(x-44-Board.whiteking.x)<=10 && abs(y+44-Board.whiteking.y)<=10))
+                            {
+                                Board.wchecked=true;
+                                System.out.println("White King checked\n");
+                            }
                             return;
                         }
 
@@ -173,7 +183,12 @@ public class Pawn extends Sprite implements MouseListener {
                             removeSet(this);
                             getPromoted();
                             Board.pawnturns++;
-                            return;
+                            if((abs(x+44-Board.whiteking.x)<=10 && abs(y+44-Board.whiteking.y)<=10)||(abs(x-44-Board.whiteking.x)<=10 && abs(y+44-Board.whiteking.y)<=10))
+                            {
+                                Board.wchecked=true;
+                                System.out.println("White King checked\n");
+                            }
+                                return;
                         }
 
                     }
