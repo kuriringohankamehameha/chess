@@ -248,7 +248,7 @@ public class Sprite implements MouseListener {
             if (c == 0) {
 
                     for (int i = 0; i < 8; i++) {
-                        if (!(abs(this.x - 44 * i) <= 5) && horizontalClear(this.x,y,44*i,y) && enemyhoriontalClear(this.x,y,44*i,y)) {
+                        if (!(abs(this.x - 44 * i) <= 5) && horizontalClear(this.x,y,44*i,y) && enemyhoriontalClear(this.x,y,44*i,y)&&!(allyCheck(44*i,y))) {
                             this.moveSetQueenx.add(44 * i);
                             this.moveSetQueeny.add(this.y);
 
@@ -259,7 +259,7 @@ public class Sprite implements MouseListener {
 
             } else if (c == 1) {
                 for (int i = 0; i < 8; i++) {
-                    if (!(abs(this.y - 44 * i) <= 5) && verticalClear(x,y,x,44*i) && enemyverticalClear(this.x,y,x,44*i)) {
+                    if (!(abs(this.y - 44 * i) <= 5) && verticalClear(x,y,x,44*i) && enemyverticalClear(this.x,y,x,44*i)&&!(allyCheck(x,44*i))) {
                         this.moveSetQueenx.add(this.x);
                         this.moveSetQueeny.add(44 * i);
                     }
@@ -268,7 +268,7 @@ public class Sprite implements MouseListener {
             } else if (c == 2) {
                 for (int i = 0; i < 8; i++) {
                     for (int j = 0; j < 8; j++) {
-                        if (this.x != 44 * i && this.y != 44 * j && (abs(abs(this.x - 44 * i) - abs(this.y - 44 * j)) <= 5) && diagonalClear(x,y,44*i,44*j) && enemydiagonalClear(x,y,44*i,44*j)) {
+                        if (this.x != 44 * i && this.y != 44 * j && (abs(abs(this.x - 44 * i) - abs(this.y - 44 * j)) <= 5) && diagonalClear(x,y,44*i,44*j) && enemydiagonalClear(x,y,44*i,44*j)&&!(allyCheck(44*i,44*j))) {
                             this.moveSetQueenx.add(44 * i);
                             this.moveSetQueeny.add(44 * j);
                         }
@@ -279,7 +279,7 @@ public class Sprite implements MouseListener {
             if (c == 2) {
                 for (int i = 0; i < 8; i++) {
                     for (int j = 0; j < 8; j++) {
-                        if (this.x != 44 * i && this.y != 44 * j && (abs(abs(this.x - 44 * i) - abs(this.y - 44 * j)) <= 5)) {
+                        if (this.x != 44 * i && this.y != 44 * j && (abs(abs(this.x - 44 * i) - abs(this.y - 44 * j)) <= 5) &&!(allyCheck(44*i,44*j))) {
                             this.moveSetQueenx.add(44 * i);
                             this.moveSetQueeny.add(44 * j);
                         }
@@ -289,7 +289,7 @@ public class Sprite implements MouseListener {
         } else if (sp.label == "ROOK") {
             if (c == 0) {
                 for (int i = 0; i < 8; i++) {
-                    if (!(abs(this.x - 44 * i) <= 5)) {
+                    if (!(abs(this.x - 44 * i) <= 5)&&!(allyCheck(44*i,y))) {
                         this.moveSetQueenx.add(44 * i);
                         this.moveSetQueeny.add(this.y);
 

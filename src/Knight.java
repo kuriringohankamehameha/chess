@@ -115,45 +115,45 @@ public class Knight extends Sprite implements MouseListener {
 
     public void addtoSet(Sprite sp, int c)
     {
-        if(x+88 <= 342 && y+44 <= 342) {
+        if(x+88 <= 342 && y+44 <= 342 && !(allyCheck(x+88,y+44))) {
             this.moveSetQueenx.add(x + 88);
             this.moveSetQueeny.add(this.y + 44);
         }
 
 
-        if(x-88>=5 && y+44<=342) {
+        if(x-88>=5 && y+44<=342 && !(allyCheck(x-88,y+44))) {
             this.moveSetQueenx.add(x - 88);
             this.moveSetQueeny.add(this.y + 44);
         }
 
         if(y-44>=5) {
-            if(x+88<=342) {
+            if(x+88<=342 && !(allyCheck(x-88,y-44))){
                 this.moveSetQueenx.add(x + 88);
                 this.moveSetQueeny.add(y - 44);
             }
-            if(x-88>=5) {
+            if(x-88>=5 && !(allyCheck(x-88,y-44))) {
                 this.moveSetQueenx.add(x - 88);
                 this.moveSetQueeny.add(y - 44);
             }
         }
 
         if(y+88<=342) {
-            if(x+44<=342) {
+            if(x+44<=342 && !(allyCheck(x+44,y+88))) {
                 this.moveSetQueenx.add(x + 44);
                 this.moveSetQueeny.add(y + 88);
             }
-            if(x-44>=5) {
+            if(x-44>=5 && !(allyCheck(x-44,y+88))) {
                 this.moveSetQueenx.add(x - 44);
                 this.moveSetQueeny.add(y + 88);
             }
         }
 
         if(y-88>=5) {
-            if(x-44>=5) {
+            if(x-44>=5 && !(allyCheck(x-44,y-88))) {
                 this.moveSetQueenx.add(x - 44);
                 this.moveSetQueeny.add(y - 88);
             }
-            if(x+44<=342) {
+            if(x+44<=342 && !(allyCheck(x+44,y-88))) {
                 this.moveSetQueenx.add(x + 44);
                 this.moveSetQueeny.add(y - 88);
             }
