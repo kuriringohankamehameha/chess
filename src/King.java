@@ -151,29 +151,44 @@ public class King extends Sprite implements MouseListener{
 
     public void addtoSet(Sprite sp, int c)
     {
-        this.moveSetQueenx.add(x+44);
-        this.moveSetQueeny.add(this.y);
+        if(x+44<=44*7 && !allyCheck(x+44,y)) {
+            this.moveSetQueenx.add(x + 44);
+            this.moveSetQueeny.add(this.y);
+        }
+        if(x>=38 && !allyCheck(x-44,y)) {
+            this.moveSetQueenx.add(x - 44);
+            this.moveSetQueeny.add(this.y);
+        }
 
-        this.moveSetQueenx.add(x-44);
-        this.moveSetQueeny.add(this.y);
+        if(y+44<=44*7 &&!allyCheck(x,y+44)) {
+            this.moveSetQueenx.add(x);
+            this.moveSetQueeny.add(y + 44);
+        }
 
-        this.moveSetQueenx.add(x);
-        this.moveSetQueeny.add(y+44);
+        if(y>=48 && !allyCheck(x,y-44)) {
+            this.moveSetQueenx.add(x);
+            this.moveSetQueeny.add(y - 44);
+        }
 
-        this.moveSetQueenx.add(x);
-        this.moveSetQueeny.add(y-44);
+        if(x+44<=44*7 && y+44<=44*7 && !allyCheck(x+44,y+44)) {
+            this.moveSetQueenx.add(x + 44);
+            this.moveSetQueeny.add(this.y + 44);
+        }
 
-        this.moveSetQueenx.add(x+44);
-        this.moveSetQueeny.add(this.y+44);
+        if(x>=38 && y+44<=44*7 && !allyCheck(x-44,y+44)) {
+            this.moveSetQueenx.add(x - 44);
+            this.moveSetQueeny.add(this.y + 44);
+        }
 
-        this.moveSetQueenx.add(x-44);
-        this.moveSetQueeny.add(this.y+44);
+        if(x+44<=44*7 && y>=38 && !allyCheck(x+44,y-44)) {
+            this.moveSetQueenx.add(x + 44);
+            this.moveSetQueeny.add(this.y - 44);
+        }
 
-        this.moveSetQueenx.add(x+44);
-        this.moveSetQueeny.add(this.y-44);
-
-        this.moveSetQueenx.add(x-44);
-        this.moveSetQueeny.add(this.y-44);
+        if(x>=38 && y>=38 && !allyCheck(x-44,y-44)) {
+            this.moveSetQueenx.add(x - 44);
+            this.moveSetQueeny.add(this.y - 44);
+        }
 
 
     }
