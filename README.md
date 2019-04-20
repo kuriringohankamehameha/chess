@@ -1,7 +1,7 @@
 # chessengine
 A Chess Engine to be implemented using Java
 
-![](https://ibb.co/80jN8M0?raw=true)
+![](https://i.ibb.co/FKBm76K/Screen-Shot-2019-04-21-at-2-04-19-AM.png?raw=true)
 
 ## TODO
 * Smoothen movements of Pieces using the Squares class, if possible
