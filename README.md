@@ -1,6 +1,8 @@
 # chessengine
 A Chess Engine to be implemented using Java
 
+![](https://ibb.co/80jN8M0?raw=true)
+
 ## TODO
 * Smoothen movements of Pieces using the Squares class, if possible
 * Add all Black King Checks
@@ -12,7 +14,6 @@ A Chess Engine to be implemented using Java
 * Construct an engine that uses Alpha-beta pruning to search moves via a moveset tree to trace out the best moves.
 (Implementation could be done using a Patricia Trie for effective pruning)
 * Develop a basic reinforcement learning AI using data from world championship Chess matches 
-* Add Screenshots of the Java Application
 
 ## UPDATE
 
