@@ -7,5 +7,3 @@ A Chess Game implemented using Java and Object Oriented Principles
 * Add Multithreading Support
 * Developing a Socket based Server for Multiplayer
 
-Need to add, optimize and refactor a lot of the code so as to suit OOP principles, but OOP isn't always the best way.
-
